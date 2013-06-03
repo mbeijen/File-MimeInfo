@@ -238,20 +238,20 @@ is the default application for this mimetype, the rest are
 applications that say they can handle this mimetype.
 
 If the first result is undefined there is no default application
-and it is good practise to ask the user which application he wants
+and it is good practice to ask the user which application he wants
 to use.
 
 =item C<mime_applications_all(MIMETYPE)>
 
 Like C<mime_applications()> but also takes into account applications that
 can open mimetypes from which MIMETYPE inherits. Parent mimetypes tell
-aomething about the data format, all code inherits from text/plain for example.
+something about the data format, all code inherits from text/plain for example.
 
 =item C<mime_applications_set_default(MIMETYPE, APPLICATION)>
 
 Save a default application for this mimetype. This action will
 affect other applications using the same mechanism to find a default
-appliction.
+application.
 
 APPLICATION can either be a File::DesktopEntry object or
 the basename of a .desktop file.

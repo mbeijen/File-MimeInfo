@@ -1,6 +1,9 @@
 Revision history for Perl extension File::MimeInfo.
 Jaap Karssenberg <pardus@cpan.org>
 
+0.17  ??
+      - Fixed typos (RT 85634) - Gregor Herrman
+
 0.16  Tue Jan 03 2012
       - Fixed test suite for perl 5.13 and newer (RT 66841) - Kent Fredric
       - Fixed typos in documentation (RT 70171, 39974) - Gregor Herrman
