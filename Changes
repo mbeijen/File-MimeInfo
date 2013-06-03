@@ -1,7 +1,7 @@
 Revision history for Perl extension File::MimeInfo.
 Jaap Karssenberg <pardus@cpan.org>
 
-0.17  ??
+0.17  Mon Jun 06 2013 (Michiel Beijen <michiel.beijen@gmail.com>)
       - Fixed tests on perl 5.18 (RT 85383) - Gregor Herrman
       - Fixed typos (RT 85634) - Gregor Herrman
 
