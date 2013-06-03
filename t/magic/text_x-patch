@@ -1,0 +1,43 @@
+Index: update-mime-database.c
+===================================================================
+RCS file: /home/freedesktop/shared-mime-info/update-mime-database.c,v
+retrieving revision 1.27
+diff -u -r1.27 update-mime-database.c
+--- update-mime-database.c	2 Jun 2003 10:25:06 -0000	1.27
++++ update-mime-database.c	27 Aug 2003 14:39:22 -0000
+@@ -786,7 +786,7 @@
+  */
+ static void parse_int_value(int bytes, const char *in, const char *in_mask,
+ 			    GString *parsed_value, char **parsed_mask,
+-			    GError **error)
++			    gboolean big_endian, GError **error)
+ {
+ 	char *end;
+ 	char *out_mask = NULL;
+@@ -802,7 +802,7 @@
+ 
+ 	for (b = 0; b < bytes; b++)
+ 	{
+-		int shift = (bytes - b - 1) * 8;
++		int shift = (big_endian ? (bytes - b - 1) : b) * 8;
+ 		g_string_append_c(parsed_value, (value >> shift) & 0xff);
+ 	}
+ 
+@@ -910,13 +910,13 @@
+ 
+ 	if (strstr(type, "16"))
+ 		parse_int_value(2, in, in_mask, parsed_value, parsed_mask,
+-				error);
++				type[0] == 'b', error);
+ 	else if (strstr(type, "32"))
+ 		parse_int_value(4, in, in_mask, parsed_value, parsed_mask,
+-				error);
++				type[0] == 'b', error);
+ 	else if (strcmp(type, "byte") == 0)
+ 		parse_int_value(1, in, in_mask, parsed_value, parsed_mask,
+-				error);
++				FALSE, error);
+ 	else if (strcmp(type, "string") == 0)
+ 	{
+ 		getstr(in, parsed_value);
+

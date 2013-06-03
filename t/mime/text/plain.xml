@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mime-type xmlns="http://www.freedesktop.org/standards/shared-mime-info" type="text/plain">
+<!--Created automatically by update-mime-database. DO NOT EDIT!-->
+  <comment>Plain Text</comment>
+  <comment xml:lang="id">Teks Murni</comment>
+  <comment xml:lang="is">Texti</comment>
+  <comment xml:lang="it">Testo semplice</comment>
+  <comment xml:lang="ja">プレーンテキスト</comment>
+  <comment xml:lang="ko">보통 글월</comment>
+  <comment xml:lang="lt">Paprastas Tekstas</comment>
+  <comment xml:lang="lv">Atklāts Teksts</comment>
+  <comment xml:lang="mi">Panui Mäori</comment>
+  <comment xml:lang="mk">Обичен текст</comment>
+  <comment xml:lang="mt">Test Sempliċi</comment>
+  <comment xml:lang="nb">Enkel tekst</comment>
+  <comment xml:lang="nl">Platte tekst</comment>
+  <comment xml:lang="nn">Rein tekst</comment>
+  <comment xml:lang="oc">Text planer</comment>
+  <comment xml:lang="pl">Zwykły tekst</comment>
+  <comment xml:lang="pt">Texto simples</comment>
+  <comment xml:lang="pt_BR">Texto Plano</comment>
+  <comment xml:lang="ro">Text simplu</comment>
+  <comment xml:lang="ru">Обычный текст</comment>
+</mime-type>

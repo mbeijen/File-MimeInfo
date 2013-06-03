@@ -1,0 +1,9 @@
+# This file is a test file -- it is incomplete !
+application/x-perl:*.pl
+application/x-gzip:*.gz
+application/x-compressed-tar:*.tar.gz
+text/x-install:INSTALL
+text/x-makefile:[Mm]akefile
+text/plain:*.asc
+text/plain:*.txt
+text/x-patch:*.patch
