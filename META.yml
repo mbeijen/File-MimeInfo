@@ -13,16 +13,16 @@ name: File-MimeInfo
 provides:
   File::MimeInfo:
     file: lib/File/MimeInfo.pm
-    version: 0.16
+    version: 0.17
   File::MimeInfo::Applications:
     file: lib/File/MimeInfo/Applications.pm
-    version: 0.16
+    version: 0.17
   File::MimeInfo::Magic:
     file: lib/File/MimeInfo/Magic.pm
-    version: 0.16
+    version: 0.17
   File::MimeInfo::Rox:
     file: lib/File/MimeInfo/Rox.pm
-    version: 0.16
+    version: 0.17
 requires:
   Carp: 0
   Exporter: 0
@@ -32,4 +32,4 @@ requires:
   Pod::Usage: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.16
+version: 0.17
