@@ -39,3 +39,4 @@ t/mime/magic
 t/mime/subclasses
 t/mime/text/plain.xml
 t/text_plain_czech
+META.json
