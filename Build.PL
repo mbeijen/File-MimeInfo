@@ -16,6 +16,11 @@ my $build = Module::Build->new(
 		'File::BaseDir'	=> '0.03',
 		'File::DesktopEntry' => '0.04',
 	},
+	meta_merge => {
+		resources => {
+			repository => 'https://github.com/mbeijen/File-MimeInfo',
+		},
+	},
 	#build_requires => {},
 	create_makefile_pl => 'passthrough',
 	#dynamic_config => 1,
