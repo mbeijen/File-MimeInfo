@@ -16,12 +16,6 @@ To install this module type the following:
    make test
    make install
 
-or alternatively:
-
-   perl Build.pl
-   perl Build test
-   perl Build install
-
 DEPENDENCIES
 
 This module expects the freedesktop mime database to be installed,

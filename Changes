@@ -1,6 +1,10 @@
 Revision history for Perl extension File::MimeInfo.
 Jaap Karssenberg <pardus@cpan.org>
 
+0.19  Sat Oct 05 2013 (Michiel Beijen <michiel.beijen@gmail.com>)
+      - Changed to EU::MM.
+      - Typo fixes - David Steinbrunner.
+
 0.18  Mon Sep 02 2013 (Michiel Beijen <michiel.beijen@gmail.com>)
       - Fixed RT#87631 - rights on File::MimeInfo::Magic not correct.
 

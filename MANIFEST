@@ -1,4 +1,4 @@
-Build.PL
+.travis.yml
 Changes
 configure
 lib/File/MimeInfo.pm
@@ -8,6 +8,7 @@ lib/File/MimeInfo/Magic.pm
 lib/File/MimeInfo/Rox.pm
 Makefile.PL
 MANIFEST
+META.json
 META.yml
 mimeopen
 mimetype
@@ -39,4 +40,3 @@ t/mime/magic
 t/mime/subclasses
 t/mime/text/plain.xml
 t/text_plain_czech
-META.json
