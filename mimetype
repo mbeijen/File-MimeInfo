@@ -229,7 +229,7 @@ sub resolvelink { # --dereference
 	return $link;
 }
 
-sub desc { # Cache desciption
+sub desc { # Cache description
 	my $mt = shift;
 	return undef unless $mt;
 	$desc{$mt} ||= describe($mt) || describe($mt, ''); # second form overrules the language settings to default
@@ -427,12 +427,12 @@ there is no description available in the language you specified.
 
 The program exits with a non-zero exit value if either the commandline
 arguments failed, a module it depends on wasn't found or the shared
-mime-info database wasn't accesable. See L<File::MimeInfo> for more details.
+mime-info database wasn't accessible. See L<File::MimeInfo> for more details.
 
 =head1 TODO
 
 The '--all' switch doesn't really show all matches, but only one per
-mime-typing method. This needs to be implemnted in the modules first.
+mime-typing method. This needs to be implemented in the modules first.
 
 =head1 BUGS
 
