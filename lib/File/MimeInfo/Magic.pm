@@ -1,4 +1,3 @@
-
 package File::MimeInfo::Magic;
 
 use strict;
@@ -306,7 +305,7 @@ C<seek()> and a C<read()> method. This allows you for example to determine
 the mimetype of data in memory by using L<IO::Scalar>.
 
 Be aware that when using a filehandle or an C<IO::> object you need to set
-the C<:utf8> binmode yourself if apropriate.
+the C<:utf8> binmode yourself if appropriate.
 
 =item C<rehash()>
 

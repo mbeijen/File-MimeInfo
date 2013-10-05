@@ -1,4 +1,3 @@
-
 =head1 NAME
 
 File::MimeInfo::Cookbook - various code snippets
@@ -35,7 +34,7 @@ and C<read()> methods. Of course if you want really obscure things to
 happen you can always write your own IO object and feed it in there.
 
 Be aware that when using a filehandle like this you need to set the C<:utf8>
-binmode yourself if apropriate.
+binmode yourself if appropriate.
 
 =item B<Mimetyping a filehandle>
 
@@ -52,7 +51,7 @@ mimetyping. For example you could mimetype data from STDIN like this:
   my $mimetype = mimetype( $io_scalar );
 
 Be aware that when using a filehandle like this you need to set the C<:utf8>
-binmode yourself if apropriate.
+binmode yourself if appropriate.
 
 =item B<Creating a new filename>
 
