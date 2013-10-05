@@ -48,7 +48,7 @@ sub inodetype {
 		(-c _) ? 'inode/chardevice'  :
 		(-b _) ? 'inode/blockdevice' :
 		(-S _) ? 'inode/socket'      : '' ;
-	if ($t eq 'inode/directory') { # compare devices to detext mount-points
+	if ($t eq 'inode/directory') { # compare devices to detect mount-points
 		my $dev = (stat _)[0]; # device of the node under investigation
 		$file = File::Spec->rel2abs($file); # get full path
 		my @dirs = File::Spec->splitdir($file);
@@ -302,11 +302,11 @@ For this module shared-mime-info-spec 0.13 was used.
 This package only uses the globs file. No real magic checking is
 used. The L<File::MimeInfo::Magic> package is provided for magic typing.
 
-If you want to detemine the mimetype of data in a memory buffer you should
+If you want to determine the mimetype of data in a memory buffer you should
 use L<File::MimeInfo::Magic> in combination with L<IO::Scalar>.
 
 This module loads the various data files when needed. If you want to
-hash data ealier see the C<rehash> methods below.
+hash data earlier see the C<rehash> methods below.
 
 =head1 EXPORT
 
@@ -396,7 +396,7 @@ classes for this mimetype.
 When given two arguments returns true if the second mimetype is a parent class of
 the first one.
 
-This method checks the subclasses table and applies a few rules for implicite
+This method checks the subclasses table and applies a few rules for implicit
 subclasses.
 
 =item C<rehash()>
