@@ -26,6 +26,7 @@ WriteMakefile
      "ExtUtils::MakeMaker" => "6.30"
    },
    'LIBS'               => [''], # e.g., '-lm'
+   'EXE_FILES' => [ 'mimetype', 'mimeopen' ],
    'dist' => {
 	      COMPRESS => "gzip -9f",
 	      SUFFIX => "gz",
