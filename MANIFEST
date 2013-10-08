@@ -1,13 +1,12 @@
 .travis.yml
 Changes
-configure
 lib/File/MimeInfo.pm
 lib/File/MimeInfo/Applications.pm
 lib/File/MimeInfo/Cookbook.pod
 lib/File/MimeInfo/Magic.pm
 lib/File/MimeInfo/Rox.pm
 Makefile.PL
-MANIFEST
+MANIFEST			This list of files
 META.json
 META.yml
 mimeopen
@@ -21,6 +20,7 @@ t/04_IO_objects.t
 t/05_more.t
 t/06_pod_ok.t
 t/07_pod_cover.t
+t/08_changes.t
 t/applications/foo.desktop
 t/applications/mimeinfo.cache
 t/default/binary_file
