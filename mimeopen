@@ -266,7 +266,7 @@ This script tries to determine the mimetype of a file and open it with the
 default desktop application. If no default application is configured the
 user is prompted with an "open with" menu in the terminal.
 
-To use this script you need the freedestop mime-info database and the
+To use this script you need the freedesktop mime-info database and the
 freedesktop desktop-file-utils package. See L<File::MimeInfo::Applications(3)>
 for more details.
 
