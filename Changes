@@ -1,6 +1,10 @@
 Revision history for Perl extension File::MimeInfo.
 Jaap Karssenberg <pardus@cpan.org>
 
+0.21  2013-11-03 (Michiel Beijen <michiel.beijen@gmail.com>)
+      - fixed typo in mimeopen manpage
+         (RT 90005) - Jonathan Dowland, Debian.
+
 0.20  2013-10-09 (Michiel Beijen <michiel.beijen@gmail.com>)
       - mimetype, mimeopen should be set as executable files
          (RT 89328) - Jitka Plesnikova, Red Hat.
