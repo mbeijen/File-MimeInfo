@@ -16,6 +16,7 @@ for (@files) {
 	$type = $_;
 	$type =~ tr#_#/#;
 	$type =~ s#\.\w+$##;
-	ok( magic("t/magic/$_") eq $type, "magic typing of $_" );
 	ok( mimetype("t/magic/$_") eq $type, "complete (magic) typing of $_");
+	undef $type if $type eq "text/plain" || $type eq "application/octet-stream";
+	ok( magic("t/magic/$_") eq $type, "magic typing of $_" );
 }
