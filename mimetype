@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 $|++;
 
 # ########## #
@@ -436,7 +436,8 @@ mime-typing method. This needs to be implemented in the modules first.
 
 =head1 BUGS
 
-No known bugs, please mail the author if you find one.
+If you find bugs, please file them in our Github
+issue tracker at L<https://github.com/mbeijen/File-MimeInfo/issues>.
 
 B<mimetype> doesn't provide a switch for looking inside compressed files
 because it seems to me that this can only be done by un-compressing the file,
@@ -446,7 +447,8 @@ made for this one day.
 
 =head1 AUTHOR
 
-Jaap Karrssenberg E<lt>pardus@cpan.orgE<gt>
+Jaap Karssenberg E<lt>pardus@cpan.orgE<gt>
+Maintained by Michiel Beijen E<lt>michiel.beijen@gmail.comE<gt>
 
 =head1 COPYRIGHT
 

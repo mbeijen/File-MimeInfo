@@ -10,7 +10,7 @@ require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT = qw(mimetype);
 our @EXPORT_OK = qw(extensions describe globs inodetype mimetype_canon mimetype_isa);
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 our $DEBUG;
 
 our ($_hashed, $_hashed_aliases, $_hashed_subclasses);
@@ -444,13 +444,12 @@ in a straightforward manner only utf8 is supported (because the spec recommends 
 This module does not yet check extended attributes for a mimetype.
 Patches for this are very welcome.
 
-=head1 BUGS
-
-Please mail the author when you encounter any bugs.
-
 =head1 AUTHOR
 
 Jaap Karssenberg E<lt>pardus@cpan.orgE<gt>
+Maintained by Michiel Beijen E<lt>michiel.beijen@gmail.comE<gt>
+
+=head1 COPYRIGHT
 
 Copyright (c) 2003, 2012 Jaap G Karssenberg. All rights reserved.
 This program is free software; you can redistribute it and/or

@@ -10,7 +10,7 @@ our @ISA = qw(Exporter);
 our @EXPORT = qw(mime_exec mime_system);
 our @EXPORT_OK = qw(suggest_script_name);
 our %EXPORT_TAGS = (magic => \@EXPORT);
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 our @choicespath = (
 	config_home('rox.sourceforge.net'),
 	File::Spec->catdir($ENV{HOME}, 'Choices'),
@@ -159,13 +159,12 @@ The suggested dir doesn't need to exist.
 
 =back
 
-=head1 BUGS
-
-Please mail the author when you encounter any bugs.
-
 =head1 AUTHOR
 
 Jaap Karssenberg E<lt>pardus@cpan.orgE<gt>
+Maintained by Michiel Beijen E<lt>michiel.beijen@gmail.comE<gt>
+
+=head1 COPYRIGHT
 
 Copyright (c) 2003, 2012 Jaap G Karssenberg. All rights reserved.
 This program is free software; you can redistribute it and/or

@@ -17,7 +17,7 @@ BEGIN {
 our @ISA = qw(Exporter File::MimeInfo);
 our @EXPORT = qw(mimetype);
 our @EXPORT_OK = qw(extensions describe globs inodetype magic);
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 our $DEBUG;
 
 our $_hashed = 0;
@@ -339,13 +339,12 @@ L<File::MimeInfo>
 Only word sizes of 1, 2 or 4 are supported. Any other word size is ignored
 and will cause a warning.
 
-=head1 BUGS
-
-Please mail the author when you encounter any bugs.
-
 =head1 AUTHOR
 
 Jaap Karssenberg E<lt>pardus@cpan.orgE<gt>
+Maintained by Michiel Beijen E<lt>michiel.beijen@gmail.comE<gt>
+
+=head1 COPYRIGHT
 
 Copyright (c) 2003, 2012 Jaap G Karssenberg. All rights reserved.
 This program is free software; you can redistribute it and/or

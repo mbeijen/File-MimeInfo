@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 $|++;
 
 # ########## #
@@ -331,7 +331,8 @@ Ignored silently.
 
 =head1 BUGS
 
-No known bugs, please mail the author if you find one.
+If you find bugs, please file them in our Github
+issue tracker at L<https://github.com/mbeijen/File-MimeInfo/issues>.
 
 See File::MimeInfo::Applications(3) and File::DesktopEntry(3)
 for some limitations.
@@ -339,6 +340,7 @@ for some limitations.
 =head1 AUTHOR
 
 Jaap Karssenberg E<lt>pardus@cpan.orgE<gt>
+Maintained by Michiel Beijen E<lt>michiel.beijen@gmail.comE<gt>
 
 =head1 COPYRIGHT
 

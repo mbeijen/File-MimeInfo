@@ -8,7 +8,7 @@ use File::MimeInfo qw/mimetype_canon mimetype_isa/;
 use File::DesktopEntry;
 require Exporter;
 
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 our @ISA = qw(Exporter);
 our @EXPORT = qw(
@@ -276,13 +276,12 @@ This file is not specified in any freedesktop spec and if it gets standardized
 it should probably be located in C<$XDG_CONFIG_HOME>. For this module I tried
 to implement the status quo.
 
-=head1 BUGS
-
-Please mail the author when you encounter any bugs.
-
 =head1 AUTHOR
 
 Jaap Karssenberg E<lt>pardus@cpan.orgE<gt>
+Maintained by Michiel Beijen E<lt>michiel.beijen@gmail.comE<gt>
+
+=head1 COPYRIGHT
 
 Copyright (c) 2005, 2012 Jaap G Karssenberg. All rights reserved.
 This program is free software; you can redistribute it and/or
