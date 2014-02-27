@@ -3,6 +3,8 @@ Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
 0.22  2014-??-??
+      - Fixed Double-close on a filehandle issue
+         (RT 93221) - Christian Ludwig.
       - Fixed cpantesters issue with old version of CPAN::Changes
 
 0.21  2013-11-03

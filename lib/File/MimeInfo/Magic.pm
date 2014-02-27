@@ -43,7 +43,7 @@ sub mimetype {
 	return $mimet if $mimet = globs($file);
 
 	($mimet, $fh) = _magic($fh, \@magic); # lower priority rules
-	close $fh unless ref $file;
+	close $fh if ref $fh;
 
 	return $mimet if $mimet;
 	return default($file);
