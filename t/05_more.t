@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 14;
+use Test::More tests => 15;
 
 $ENV{XDG_DATA_HOME} = './t/';
 $ENV{XDG_DATA_DIRS} = './t/'; # forceing non default value
