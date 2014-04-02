@@ -21,7 +21,7 @@ WARNING: You don't seem to have any mimeinfo.cache files.
 Try running the update-desktop-database command. If you
 don't have this command you should install the
 desktop-file-utils package. This package is available from
-http://freedesktop.org/wiki/Software_2fdesktop_2dfile_2dutils
+http://freedesktop.org/wiki/Software/desktop-file-utils/
 EOT
 
 sub mime_applications {
@@ -294,6 +294,6 @@ L<File::MimeInfo>,
 L<File::MimeInfo::Magic>,
 L<File::BaseDir>
 
-L<http://freedesktop.org/wiki/Software_2fdesktop_2dfile_2dutils>
+L<http://freedesktop.org/wiki/Software/desktop-file-utils/>
 
 =cut
