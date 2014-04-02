@@ -120,7 +120,7 @@ sub _read_list { # read list with "mime/type=foo.desktop;bar.desktop" format
 	my @list;
 	open LIST, '<', $file or croak "Could not read file: $file";
 	while (<LIST>) {
-		/^$mimetype=(.*)$/ or next;
+        /^\Q$mimetype\E=(.*)$/ or next;
 		push @list, grep defined($_), split ';', $1;
 	}
 	close LIST;
@@ -135,7 +135,7 @@ sub _write_list {
 	if (-f $file) {
 		open LIST, '<', $file or croak "Could not read file: $file";
 		while (<LIST>) {
-			$text .= $_ unless /^$mimetype=/;
+			$text .= $_ unless /^\Q$mimetype\E=/;
 		}
 		close LIST;
 		$text =~ s/[\n\r]?$/\n/; # just to be sure

@@ -2,6 +2,11 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
+0.23  2014-04-02
+      - Fixed opening of files with '+' in mime type using
+        File::MimeInfo::Applications.
+        Debian bug 690334, brian m. carlson.
+
 0.22  2014-02-27
       - Fixed Double-close on a filehandle issue
          (RT 93221) - Christian Ludwig.
