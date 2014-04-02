@@ -44,5 +44,11 @@ SKIP: {
 		'mime_application() works'
 	);
 	ok ( $other[0]->{file} =~ /foo\.desktop$/, "desktop file is the right one" );
+    my ($default, @other) = mime_applications('image/svg+xml');
+    is (
+        $other[0]->{file},
+        't/applications/mirage.desktop',
+        "desktop file is the right one"
+    );
 }
 

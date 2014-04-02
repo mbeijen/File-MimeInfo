@@ -1,0 +1,26 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Name=Foo Viewer
+Comment=The best viewer for Foo objects available!
+Comment[eo]=Tekstredaktilo
+Comment[ja]=テキストエディタ
+TryExec=fooview
+Exec=fooview %F
+Icon=fooview.png
+MimeType=image/x-foo
+X-KDE-Library=libfooview
+X-KDE-FactoryName=fooviewfactory
+X-KDE-ServiceType=FooService
+
+[Desktop Action Inverse]
+# Inverse Foo => ooF
+Exec=fooview --inverse %f
+Name=Foo Viewer (inverse image)
+
+[Desktop Action Edit]
+Exec=fooview --edit %f
+Name=Foo Viewer (edit image)
+Icon=fooview-edit.png
+
