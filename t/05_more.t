@@ -1,5 +1,6 @@
 use strict;
-use Test::More tests => 15;
+use File::Spec;
+use Test::More tests => 16;
 
 $ENV{XDG_DATA_HOME} = './t/';
 $ENV{XDG_DATA_DIRS} = './t/'; # forceing non default value
@@ -36,19 +37,26 @@ SKIP: {
 
 	use_ok('File::MimeInfo::Applications');
 
-	my ($default, @other) = mime_applications('text/plain');
+
+	my %list = (
+		'text/plain'    => 'foo.desktop',
+		'image/svg+xml' => 'mirage.desktop',
+	);
+
+	for my $type (keys %list) {
+
+	my ($default, @other) = mime_applications($type);
 	ok (
 		!defined($default)	&&
 		(@other == 1)		&&
 		ref($other[0]) eq 'File::DesktopEntry',
 		'mime_application() works'
 	);
-	ok ( $other[0]->{file} =~ /foo\.desktop$/, "desktop file is the right one" );
-    my ($default, @other) = mime_applications('image/svg+xml');
-    is (
-        $other[0]->{file},
-        't/applications/mirage.desktop',
-        "desktop file is the right one"
-    );
+	is (
+		$other[0]->{file},
+		File::Spec->catfile('t', 'applications', $list{$type}),
+		"desktop file is the right one",
+	);
+	}
 }
 
