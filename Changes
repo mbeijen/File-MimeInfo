@@ -2,6 +2,9 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
+0.25  2014-04-03
+      - Included new test file in MANIFEST.
+
 0.24  2014-04-02
       - Fixed freedesktop.org desktop-file-utils URL - David Steinbrunner.
 

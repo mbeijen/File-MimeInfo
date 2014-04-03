@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
-our $VERSION = '0.24';
+our $VERSION = '0.25';
 $|++;
 
 # ########## #
