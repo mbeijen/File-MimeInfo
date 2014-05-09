@@ -15,7 +15,7 @@ is_deeply( [extensions('text/plain')], [qw#asc txt#], 'wantarray extensions work
 {
 	# call above should have triggered rehash()
 	no warnings; # don't bug me because I use these vars only once
-	ok(scalar(keys %File::MimeInfo::extension) == 6, 'extension data is there');    # 4
+	is(scalar(keys %File::MimeInfo::extension), 7, 'extension data is there');    # 4
 }
 
 ## test alias lookup
