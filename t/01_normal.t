@@ -1,7 +1,7 @@
 
 use strict;
 
-use Test::More tests => 30;
+use Test::More tests => 31;
 
 $ENV{XDG_DATA_HOME} = './t/';
 $ENV{XDG_DATA_DIRS} = './t/'; # forceing non default value
@@ -85,3 +85,4 @@ ok( describe('text/plain') eq 'Plain Text', 'describe works' ); # 29
 }
 ok( describe('text/plain') eq 'Platte tekst', 'describe works with other languages' ); # 30
 
+is( mimetype('t/test.png'), 'image/png', 'glob priority observed'); # 31

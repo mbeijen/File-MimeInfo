@@ -7,3 +7,5 @@ text/x-makefile:[Mm]akefile
 text/plain:*.asc
 text/plain:*.txt
 text/x-patch:*.patch
+image/png:*.png
+image/apple-ios-png:*.png
