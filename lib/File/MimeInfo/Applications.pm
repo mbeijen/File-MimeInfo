@@ -72,7 +72,7 @@ sub mime_applications_set_custom {
 	$object->set(
 		Type      => 'Application',
 		Name      => $word,
-		NoDsiplay => 'true',
+		NoDisplay => 'true',
 		Exec      => $command,
 	);
 	my (undef, undef, $df) = File::Spec->splitpath($desktop_file);
@@ -83,7 +83,7 @@ sub mime_applications_set_custom {
 
 sub _default {
 	my $mimetype = shift;
-	my $file = data_home(qw/applications defaults.list/);
+	my $file = data_home(qw/applications mimeapps.list/);
 	return undef unless -f $file && -r _;
 
 	$Carp::CarpLevel++;
