@@ -11,7 +11,7 @@ META.json
 META.yml
 mimeopen
 mimetype
-README
+README.md
 t/00_use_ok.t
 t/01_normal.t
 t/02_magic.t

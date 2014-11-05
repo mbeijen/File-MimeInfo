@@ -8,7 +8,7 @@ use File::MimeInfo qw/mimetype_canon mimetype_isa/;
 use File::DesktopEntry;
 require Exporter;
 
-our $VERSION = '0.25';
+our $VERSION = '0.26';
 
 our @ISA = qw(Exporter);
 our @EXPORT = qw(

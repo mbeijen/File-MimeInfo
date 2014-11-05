@@ -2,6 +2,11 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
+0.26  2014-05-11
+      - Fix mimeinfo not adhering to the priorization of globs -
+         kudos Stefan Seifert.
+      - Fixed URL in POD. Only run POD 404 tests with extended testing.
+
 0.25  2014-04-03
       - Included new test file in MANIFEST.
 
