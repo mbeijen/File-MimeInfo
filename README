@@ -19,13 +19,13 @@ To install this module type the following:
 DEPENDENCIES
 
 This module expects the freedesktop mime database to be installed,
-some linux distrobutions include it, otherwise it can obtained 
+some linux distributions include it, otherwise it can obtained 
 from :
 
   http://freedesktop.org/Software/shared-mime-info
 
 This module requires these other modules which can be obtained from
-the CPAN <http://cpan.org> if they are not allready installed on
+the CPAN <http://cpan.org> if they are not already installed on
 your system :
 
   Carp
