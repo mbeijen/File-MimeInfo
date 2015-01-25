@@ -24,7 +24,7 @@ from:
   http://freedesktop.org/Software/shared-mime-info
 
 This module requires these other modules which can be obtained from
-the [CPAN](https://metacpan.org) if they are not allready installed on
+the [CPAN](https://metacpan.org) if they are not already installed on
 your system:
 
 * Carp
