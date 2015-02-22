@@ -38,5 +38,16 @@ WriteMakefile (
       repository => 'https://github.com/mbeijen/File-MimeInfo',
       bugtracker => 'https://github.com/mbeijen/File-MimeInfo/issues',
     },
+    x_contributors => [
+      'Michiel Beijen <michiel.beijen@gmail.com>',
+      'Christian Ludwig <chrissicool@gmail.com>',
+      'Bernhard Rosenkränzer <bero@lindev.ch>',
+      'David Steinbrunner <dsteinbrunner@pobox.com>',
+      'Jitka Plesnikova <jplesnik@redhat.com>',
+      'Jonathan Dowland <jmtd@debian.org>',
+      'Sean Smith <ssmith@ncsgraphics.com>',
+      'Stefan Seifert <nine@detonation.org>',
+      'brian m. carlson <sandals@crustytoothpaste.net>',
+    ],
   },
 );
