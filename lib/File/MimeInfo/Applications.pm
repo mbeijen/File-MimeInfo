@@ -72,7 +72,7 @@ sub mime_applications_set_custom {
 	$object->set(
 		Type      => 'Application',
 		Name      => $word,
-		NoDsiplay => 'true',
+		NoDisplay => 'true',
 		Exec      => $command,
 	);
 	my (undef, undef, $df) = File::Spec->splitpath($desktop_file);
