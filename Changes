@@ -3,6 +3,7 @@ Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
 0.27  2015-02-23
+ - Allow to use mimeinfo on a Path::Tiny object. Reported by Smylers.
  - Misspelled NoDisplay attribute in .desktop file.
    Fix by Bernhard Rosenkraenzer (berolinux)
  - Fix typos in README by Sean Smith (ncstang) as part of CPAN Pull Request

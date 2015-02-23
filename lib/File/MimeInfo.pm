@@ -30,7 +30,6 @@ sub new { bless \$VERSION, shift } # what else is there to bless ?
 sub mimetype {
 	my $file = pop;
 	croak 'subroutine "mimetype" needs a filename as argument' unless defined $file;
-	croak 'You should use File::MimeInfo::Magic to check open filehandles' if ref $file;
 	return
 		inodetype($file) ||
 		globs($file)	 ||
