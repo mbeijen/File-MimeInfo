@@ -2,176 +2,176 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
+0.27  2015-02-23
+ - Misspelled NoDisplay attribute in .desktop file.
+   Fix by Bernhard Rosenkraenzer (berolinux)
+ - Fix typos in README by Sean Smith (ncstang) as part of CPAN Pull Request
+    Challenge February 2015.
+
 0.26  2014-05-11
-      - Fix mimeinfo not adhering to the priorization of globs -
-         kudos Stefan Seifert.
-      - Fixed URL in POD. Only run POD 404 tests with extended testing.
+ - Fix mimeinfo not adhering to the priorization of globs -
+    kudos Stefan Seifert.
+ - Fixed URL in POD. Only run POD 404 tests with extended testing.
 
 0.25  2014-04-03
-      - Included new test file in MANIFEST.
+ - Included new test file in MANIFEST.
 
 0.24  2014-04-02
-      - Fixed freedesktop.org desktop-file-utils URL - David Steinbrunner.
+ - Fixed freedesktop.org desktop-file-utils URL - David Steinbrunner.
 
 0.23  2014-04-02
-      - Fixed opening of files with '+' in mime type using
-        File::MimeInfo::Applications.
-        Debian bug 690334, brian m. carlson.
+ - Fixed opening of files with '+' in mime type using
+   File::MimeInfo::Applications.
+   Debian bug 690334, brian m. carlson.
 
 0.22  2014-02-27
-      - Fixed Double-close on a filehandle issue
-         (RT 93221) - Christian Ludwig.
-      - Fixed cpantesters issue with old version of CPAN::Changes
+ - Fixed Double-close on a filehandle issue (RT 93221) - Christian Ludwig.
+ - Fixed cpantesters issue with old version of CPAN::Changes
 
 0.21  2013-11-03
-      - fixed typo in mimeopen manpage
-         (RT 90005) - Jonathan Dowland, Debian.
+ - fixed typo in mimeopen manpage
+    (RT 90005) - Jonathan Dowland, Debian.
 
 0.20  2013-10-09
-      - mimetype, mimeopen should be set as executable files
-         (RT 89328) - Jitka Plesnikova, Red Hat.
+ - mimetype, mimeopen should be set as executable files
+    (RT 89328) - Jitka Plesnikova, Red Hat.
 
 0.19  2013-10-05
-      - Changed to EU::MM.
-      - Typo fixes - David Steinbrunner.
+ - Changed to EU::MM.
+ - Typo fixes - David Steinbrunner.
 
 0.18  2013-09-02
-      - Fixed RT#87631 - rights on File::MimeInfo::Magic not correct.
+ - Fixed RT#87631 - rights on File::MimeInfo::Magic not correct.
 
 0.17  2013-06-06
-      - Fixed tests on perl 5.18 (RT 85383) - Gregor Herrman
-      - Fixed typos (RT 85634) - Gregor Herrman
+ - Fixed tests on perl 5.18 (RT 85383) - Gregor Herrman
+ - Fixed typos (RT 85634) - Gregor Herrman
 
 0.16  2012-01-03
-      - Fixed test suite for perl 5.13 and newer (RT 66841) - Kent Fredric
-      - Fixed typos in documentation (RT 70171, 39974) - Gregor Herrman
-      - Fixed bug for files named "0" (RT 41031)
-      - Cleaned up mimetype script (RT 64421)
-      - Removed unessecary error code (RT 66527)
-      - Removed illogical behavior for derefereencing symlinks (RT 58575)
+ - Fixed test suite for perl 5.13 and newer (RT 66841) - Kent Fredric
+ - Fixed typos in documentation (RT 70171, 39974) - Gregor Herrman
+ - Fixed bug for files named "0" (RT 41031)
+ - Cleaned up mimetype script (RT 64421)
+ - Removed unessecary error code (RT 66527)
+ - Removed illogical behavior for derefereencing symlinks (RT 58575)
 
 0.15  2008-02-13
-      A special thanks to Chapman Flack for bug reports and patches.
-      - Added some empty pod declarations to satisfy Pod::Coverage (RT 33099)
-      - Fixed typo \xF7 => \x7F in ascii control char check (RT 30959)
-      - Adapted new File::BaseDir API
-      - Added DesktopEntry as a mandatory dependency
-      - Added support for endian conversion (RT 28618)
-      - Fixed mask behavior by making it a bit-wise regex (RT 28620 28635)
-      - Reduced range by 1 byte to match ref implementation (RT 28634)
-      - Added "--no-ask" switch to the mimeopen command
-      - Added "mime_applications_custom()" to set custom commands
-      - Made Magic load magic data when needed, not at startup
-      - Made MimeInfo load glob data when needed, not at startup
+ A special thanks to Chapman Flack for bug reports and patches.
+ - Added some empty pod declarations to satisfy Pod::Coverage (RT 33099)
+ - Fixed typo \xF7 => \x7F in ascii control char check (RT 30959)
+ - Adapted new File::BaseDir API
+ - Added DesktopEntry as a mandatory dependency
+ - Added support for endian conversion (RT 28618)
+ - Fixed mask behavior by making it a bit-wise regex (RT 28620 28635)
+ - Reduced range by 1 byte to match ref implementation (RT 28634)
+ - Added "--no-ask" switch to the mimeopen command
+ - Added "mime_applications_custom()" to set custom commands
+ - Made Magic load magic data when needed, not at startup
+ - Made MimeInfo load glob data when needed, not at startup
 
 0.14  2007-06-08
-      - Changed syntax for open() to 3 argument form
-      - Fixed bug for filenames like "0"
-      - Fixed bug with "-l" for Win32
-      - Fixed bug with malformed utf8 chars in default() method
-        derived from suggestions by mcummings_gentoo.org and jonas_cpan.org
-      - Moved from Makefile.PL to Build.pl
+ - Changed syntax for open() to 3 argument form
+ - Fixed bug for filenames like "0"
+ - Fixed bug with "-l" for Win32
+ - Fixed bug with malformed utf8 chars in default() method derived from
+    suggestions by mcummings_gentoo.org and jonas_cpan.org
+ - Moved from Makefile.PL to Build.pl
 
 0.13  2006-01-30
-      Version bump for File::MimeInfo to keep CPAN happy
-      - Fixed a bug with F:M::Applications when dir non-existent
+ Version bump for File::MimeInfo to keep CPAN happy
+ - Fixed a bug with F:M::Applications when dir non-existent
 
 0.12  2005-10-08
-      Updated to version 0.13 of the shared mimeinfo specification
-      - Magic rules with priority 80 go above globs now
-      - Added mimetype_isa() to check for mimetype subclasses
-      - Added mimetype_canon() to check for mimetype aliases
-      - Added support for the inode/mount-point mimetype
-      - Added File::MimeInfo::Applications and the mimeopen script
-      - Changed the order of checking for inodetype "symlink" and "directory"
-      as suggested by Jens Luedicke
-      - Fixed a few inaccuracies in the documentation
+ Updated to version 0.13 of the shared mimeinfo specification
+ - Magic rules with priority 80 go above globs now
+ - Added mimetype_isa() to check for mimetype subclasses
+ - Added mimetype_canon() to check for mimetype aliases
+ - Added support for the inode/mount-point mimetype
+ - Added File::MimeInfo::Applications and the mimeopen script
+ - Changed the order of checking for inodetype "symlink" and "directory" as
+    suggested by Jens Luedicke
+ - Fixed a few inaccuracies in the documentation
 
 0.11  2005-03-18
-      - Added an @DIRS to be able to overload the XDG_DATA_DIRS path
-      - Fixed the code to let "mimetype" determine the mime-type of STDIN
+ - Added an @DIRS to be able to overload the XDG_DATA_DIRS path
+ - Fixed the code to let "mimetype" determine the mime-type of STDIN
 
-      2005-03-17
-      - Fixed a bug in the globs() method, added File::Basename to the
-      dependency list.
-      - Added the --all and --magic-only options to "mimetype"
+ 2005-03-17
+ - Fixed a bug in the globs() method, added File::Basename to the dependency
+    list.
+ - Added the --all and --magic-only options to "mimetype"
 
-      2005-03-16
-      - globs() now returns the matched extension when called in list context
-      - Added Cookbook.pm as a kind of FAQ document
-      - Applied part of a patch to support reverse lookup of extensions
-      which was also supplied by jgmyers at proofpoint.com
-      This adds the extensions() method and fixes a bug in a regex.
-      - Applied a spelling patch supplied by jgmyers at proofpoint.com
+ 2005-03-16
+ - globs() now returns the matched extension when called in list context
+ - Added Cookbook.pm as a kind of FAQ document
+ - Applied part of a patch to support reverse lookup of extensions which was
+    also supplied by jgmyers at proofpoint.com
+    This adds the extensions() method and fixes a bug in a regex.
+ - Applied a spelling patch supplied by jgmyers at proofpoint.com
 
 0.10  2004-02-08
-      - Stripped down test for IO objects, because it doesn't seem to be
-      platform independent enough
-      - ++'ing  version number to keep CPAN satisfied
+ - Stripped down test for IO objects, because it doesn't seem to be platform
+    independent enough
+ - ++'ing  version number to keep CPAN satisfied
 
 0.9   2003-12-05
-      - Fixed magic() and default() to work on IO::something objects
-      - Added a "no warnings" in the default routine to suppress warnings when
-      input is latin2 (thus neither ascii or utf8). Not sure whether this 
-      really fixes the problem but it at least ignores it.
-      The problem was reported by Daniel Raska.
+ - Fixed magic() and default() to work on IO::something objects
+ - Added a "no warnings" in the default routine to suppress warnings when
+    input is latin2 (thus neither ascii or utf8). Not sure whether this 
+    really fixes the problem but it at least ignores it.
+    The problem was reported by Daniel Raska.
 
 0.8   2003-10-22
-      Seems that the new version of the mime-info spec takes longer then
-      I expected, so I decided to release last weeks bug fixes.
-      - Fine tuned the method interface for describe()
-      - Made mimetype -d -l .. default to english for missing translations
-      - updated URL's for freedesktop
-      - Fixed small bug in Magic.pm causing a lot of warnings on 
-      initialisation when using 'perl -w', reported by Steve Barton
+Seems that the new version of the mime-info spec takes longer then I expected,
+so I decided to release last weeks bug fixes.
+ - Fine tuned the method interface for describe()
+ - Made mimetype -d -l .. default to english for missing translations
+ - updated URL's for freedesktop
+ - Fixed small bug in Magic.pm causing a lot of warnings on initialisation when
+    using 'perl -w', reported by Steve Barton
 
 0.7   2003-10-03
-      - Added File::MimeInfo::Rox
-      - ++'ing  version number to keep CPAN satisfied
+ - Added File::MimeInfo::Rox
+ - ++'ing  version number to keep CPAN satisfied
 
 0.6   2003-09-04
-      - Emergency release because of a bug in the magic test file
+ - Emergency release because of a bug in the magic test file
 
 0.5   2003-09-03
-      - added tests for magic typing
-      - fixed design mistake in the basedir file search
-      all xdg data dirs are now used, not only the first one found
-      - put basedir code in a separate package called File::BaseDir
-      - disabled utf8 binmode layer for perl versions prior to 5.8.0
+ - added tests for magic typing
+ - fixed design mistake in the basedir file search all xdg data dirs are now
+    used, not only the first one found
+ - put basedir code in a separate package called File::BaseDir
+ - disabled utf8 binmode layer for perl versions prior to 5.8.0
 
 0.4   2003-08-27
-      - Added the --dir switch.
-      - Added File::MimeInfo::Magic that inherits from File::MimeInfo but
-      also does use the freedesktop magic file
-      - Shifted some code around in File::MimeInfo to make inheriting easier
-      - Made the mimetype script work with Magic by default
-      - Added the --debug switch to trace why a certain file is typed the
-      way it is
-      - Updated and reviewed the documentation
+ - Added the --dir switch.
+ - Added File::MimeInfo::Magic that inherits from File::MimeInfo but also does
+    use the freedesktop magic file
+ - Shifted some code around in File::MimeInfo to make inheriting easier
+ - Made the mimetype script work with Magic by default
+ - Added the --debug switch to trace why a certain file is typed the way it is
+ - Updated and reviewed the documentation
 
 0.3   2003-08-24
-      - Moved file test operator stuff to a subroutine called inodetype()
-      - Actually implemented the --file-compat switch
-      - Added the -L and -i commandline switches for file(1) compatibility
-      - Fixed a few bugs with relative file names
-      - Changed the script 'mimeinfo' back to 'mimetype' because
-      rox has a '--mime-type' switch doing the same thing as this script.
-      - Added the describe() method for getting human readable descriptions
-      - Implemented the commandline switches --desc and --output-format
-      - Changed the script 'mimetype' to 'mimeinfo'
-      - added some commandline options to make this script a little
-      file(1) compat
-      - added some file test operators for determining types from the
-      inode/* class.
-      - use utf8 binmode for filehandles
+ - Moved file test operator stuff to a subroutine called inodetype()
+ - Actually implemented the --file-compat switch
+ - Added the -L and -i commandline switches for file(1) compatibility
+ - Fixed a few bugs with relative file names
+ - Changed the script 'mimeinfo' back to 'mimetype' because rox has a '--mime-type'
+    switch doing the same thing as this script.
+ - Added the describe() method for getting human readable descriptions
+ - Implemented the commandline switches --desc and --output-format
+ - Changed the script 'mimetype' to 'mimeinfo'
+ - added some commandline options to make this script a little file(1) compat
+ - added some file test operators for determining types from the inode/* class.
+ - use utf8 binmode for filehandles
 
 0.2   2003-07-12
-      - bug fix for OO interface, forget to test the constructor :S
-      - added specified default behaviour
+ - bug fix for OO interface, forget to test the constructor :S
+ - added specified default behaviour
 
 0.1   2003-07-11
-      - original version; created by h2xs 1.22 with options
-          -AX File::MMagic::Freedesktop
-      - implemented finding file type by glob folowing the
-      shared-mime-info-spec version 0.11
-      - decided to rename it File::MimeInfo because it is less cryptic
+ - original version; created by h2xs 1.22 with options -AX File::MMagic::Freedesktop
+ - implemented finding file type by glob folowing the shared-mime-info-spec version 0.11
+ - decided to rename it File::MimeInfo because it is less cryptic
