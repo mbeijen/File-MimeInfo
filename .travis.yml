@@ -7,3 +7,5 @@ perl:
   - "5.12"
   - "5.10"
   - "5.8"
+install:
+  - cpanm --quiet Path::Tiny Test::Pod Test::Pod::Coverage Test::CPAN::Changes
