@@ -5,6 +5,7 @@ use Carp;
 use Fcntl 'SEEK_SET';
 use File::Spec;
 use File::BaseDir qw/data_files/;
+use XML::LibXML;
 require Exporter;
 
 our @ISA = qw(Exporter);
@@ -199,14 +200,14 @@ sub describe {
 		: ( reverse data_files('mime', split '/', "$mt.xml") ) ;
 	for my $file (@descfiles) {
 		$desc = ''; # if a file was found, return at least empty string
-		open XML, '<', $file || croak "Could not open file '$file' for reading";
-		binmode XML, ':utf8' unless $] < 5.008;
-		while (<XML>) {
-			next unless m!<comment\s*$att>(.*?)</comment>!;
-			$desc = $1;
-			last;
-		}
-		close XML || croak "Could not open file '$file' for reading";
+		my $parser = XML::LibXML->new();
+		my $dom = $parser->parse_file($file);
+		my $xc = XML::LibXML::XPathContext->new($dom);
+		$xc->registerNs('smi', 'http://www.freedesktop.org/standards/shared-mime-info');
+		my @comments_lang = $xc->findnodes('(//smi:comment' . ($att ? '[@' . $att . ']' : '') . ')[1]');
+		if(scalar(@comments_lang) > 0) {
+                        $desc = $comments_lang[0]->textContent;
+                }
 		last if $desc;
 	}
 	return $desc;
