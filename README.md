@@ -34,6 +34,7 @@ your system:
 * File::Basename
 * File::BaseDir
 * File::DesktopEntry
+* XML::LibXML
 
 ## COPYRIGHT AND LICENCE
 

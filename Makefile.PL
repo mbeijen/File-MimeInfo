@@ -49,6 +49,7 @@ WriteMakefile (
       'Sean Smith <ssmith@ncsgraphics.com>',
       'Stefan Seifert <nine@detonation.org>',
       'brian m. carlson <sandals@crustytoothpaste.net>',
+      'Loïc Jean David Arjanen <arjanen.loic@gmail.com>',
     ],
   },
 );

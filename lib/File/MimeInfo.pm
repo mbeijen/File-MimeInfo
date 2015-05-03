@@ -375,8 +375,6 @@ This method returns undef when no xml file was found (i.e. the mimetype
 doesn't exist in the database). It returns an empty string when the xml file doesn't
 contain a description in the language you specified.
 
-I<Currently no real xml parsing is done, it trusts the xml files are nicely formatted.>
-
 =item C<mimetype_canon($mimetype)>
 
 Returns the canonical mimetype for a given mimetype.
@@ -429,8 +427,6 @@ in the second case you have the database installed, but it is broken
 =head1 TODO
 
 Make an option for using some caching mechanism to reduce init time.
-
-Make C<describe()> use real xml parsing ?
 
 =head1 LIMITATIONS
 
