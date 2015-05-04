@@ -34,7 +34,7 @@ your system:
 * File::Basename
 * File::BaseDir
 * File::DesktopEntry
-* XML::LibXML
+* XML::LibXML (depends on Gnome XML library, libxml2-dev)
 
 ## COPYRIGHT AND LICENCE
 

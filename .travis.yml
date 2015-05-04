@@ -9,6 +9,6 @@ perl:
   - "5.8"
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq desktop-file-utils
+  - sudo apt-get install -qq desktop-file-utils libxml2-dev
 install:
-  - cpanm --quiet File::BaseDir File::DesktopEntry Path::Tiny Test::Pod Test::Pod::Coverage Test::CPAN::Changes
+  - cpanm --quiet --notest File::BaseDir File::DesktopEntry Path::Tiny Test::Pod Test::Pod::Coverage Test::CPAN::Changes XML::LibXML

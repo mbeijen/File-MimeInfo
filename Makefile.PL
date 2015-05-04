@@ -46,6 +46,7 @@ WriteMakefile (
       'David Steinbrunner <dsteinbrunner@pobox.com>',
       'Jitka Plesnikova <jplesnik@redhat.com>',
       'Jonathan Dowland <jmtd@debian.org>',
+      'Loïc Jean David Arjanen <arjanen.loic@gmail.com>',
       'Sean Smith <ssmith@ncsgraphics.com>',
       'Stefan Seifert <nine@detonation.org>',
       'brian m. carlson <sandals@crustytoothpaste.net>',
