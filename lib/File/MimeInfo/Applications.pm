@@ -83,11 +83,12 @@ sub mime_applications_set_custom {
 
 sub _default {
 	my $mimetype = shift;
-	my $legacy_file = data_home(qw/applications mimeapps.list/);
+        my $legacy_file = data_home(qw/applications defaults.list/);
+	my $compat_file = data_home(qw/applications mimeapps.list/);
 	my $file = config_home(qw/mimeapps.list/);
 	return undef unless (-f $file || -f $legacy_file) && -r _;
 	$Carp::CarpLevel++;
-	my @list = _read_list($mimetype, $file, $legacy_file);
+	my @list = _read_list($mimetype, $file, $compat_file, $legacy_file);
 	my $desktop_file = _find_file(reverse @list);
 	$Carp::CarpLevel--;
 	return $desktop_file;
@@ -113,7 +114,7 @@ sub _others {
 }
 
 sub _read_list { # read list with "mime/type=foo.desktop;bar.desktop" format
-	my ($mimetype, $file, $legacy_file) = @_;
+	my ($mimetype, $file, $compat_file, $legacy_file) = @_;
 	my @list;
 	my $has_succeeded = 0;
 	if(open LIST, '<', $file) {
@@ -124,6 +125,14 @@ sub _read_list { # read list with "mime/type=foo.desktop;bar.desktop" format
 	        }
 	        close LIST;
 	}
+        if(open COMPAT, '<', $compat_file) {
+                $has_succeeded = 1;
+                while (<COMPAT>) {
+                        /^\Q$mimetype\E=(.*)$/ or next;
+                        push @list, grep defined($_), split ';', $1;
+                }
+                close COMPAT;
+        }
         if(open LEGACY, '<', $legacy_file) {
                 $has_succeeded = 1;
                 while (<LEGACY>) {
@@ -133,7 +142,7 @@ sub _read_list { # read list with "mime/type=foo.desktop;bar.desktop" format
                 close LEGACY;
         }
         if(!$has_succeeded) {
-                croak "Could read neither file: $file nor legacy file: $legacy_file";
+                croak "Could read neither file: $file nor compat file: $compat_file nor legacy file: $legacy_file";
         }
 	return @list;
 }
@@ -279,8 +288,9 @@ It should however contain at least one word.
 
 The file with defaults is
 F<$XDG_CONFIG_HOME/mimeapps.list>, as indicated in
-the MIME Applications Associations spec. F<$XDG_DATA_HOME/applications/defaults.list>
-is still read for compatibility.
+the MIME Applications Associations spec. F<$XDG_DATA_HOME/applications/mimeapps.list>
+and F<$XDG_DATA_HOME/applications/defaults.list> are still read for compatibility with
+resp. previous implementations of the spec and previous versions of the package.
 
 =head1 AUTHOR
 
@@ -300,10 +310,16 @@ L<File::MimeInfo>,
 L<File::MimeInfo::Magic>,
 L<File::BaseDir>
 
+=over 4
+
 =item freedesktop specifications used
 
 L<http://www.freedesktop.org/wiki/Specifications/mime-apps-spec/>
 
+=item freedesktop desktop entries utilities
+
 L<http://freedesktop.org/wiki/Software/desktop-file-utils/>
+
+=back
 
 =cut
