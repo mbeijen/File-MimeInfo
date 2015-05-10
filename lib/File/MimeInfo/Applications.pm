@@ -3,7 +3,7 @@ package File::MimeInfo::Applications;
 use strict;
 use Carp;
 use File::Spec;
-use File::BaseDir qw/data_home data_dirs data_files/;
+use File::BaseDir qw/config_home data_home data_dirs data_files/;
 use File::MimeInfo qw/mimetype_canon mimetype_isa/;
 use File::DesktopEntry;
 require Exporter;
@@ -83,20 +83,18 @@ sub mime_applications_set_custom {
 
 sub _default {
 	my $mimetype = shift;
-	my $file = data_home(qw/applications defaults.list/);
-	return undef unless -f $file && -r _;
-
+	my $legacy_file = data_home(qw/applications mimeapps.list/);
+	my $file = config_home(qw/mimeapps.list/);
+	return undef unless (-f $file || -f $legacy_file) && -r _;
 	$Carp::CarpLevel++;
-	my @list = _read_list($mimetype, $file);
+	my @list = _read_list($mimetype, $file, $legacy_file);
 	my $desktop_file = _find_file(reverse @list);
 	$Carp::CarpLevel--;
-
 	return $desktop_file;
 }
 
 sub _others {
 	my $mimetype = shift;
-
 	$Carp::CarpLevel++;
 	my (@list, @done);
 	for my $dir (data_dirs('applications')) {
@@ -111,26 +109,38 @@ sub _others {
 		}
 	}
 	$Carp::CarpLevel--;
-
 	return @list;
 }
 
 sub _read_list { # read list with "mime/type=foo.desktop;bar.desktop" format
-	my ($mimetype, $file) = @_;
+	my ($mimetype, $file, $legacy_file) = @_;
 	my @list;
-	open LIST, '<', $file or croak "Could not read file: $file";
-	while (<LIST>) {
-        /^\Q$mimetype\E=(.*)$/ or next;
-		push @list, grep defined($_), split ';', $1;
+	my $has_succeeded = 0;
+	if(open LIST, '<', $file) {
+                $has_succeeded = 1;
+                while (<LIST>) {
+                        /^\Q$mimetype\E=(.*)$/ or next;
+		        push @list, grep defined($_), split ';', $1;
+	        }
+	        close LIST;
 	}
-	close LIST;
-
+        if(open LEGACY, '<', $legacy_file) {
+                $has_succeeded = 1;
+                while (<LEGACY>) {
+                        /^\Q$mimetype\E=(.*)$/ or next;
+                        push @list, grep defined($_), split ';', $1;
+                }
+                close LEGACY;
+        }
+        if(!$has_succeeded) {
+                croak "Could read neither file: $file nor legacy file: $legacy_file";
+        }
 	return @list;
 }
 
 sub _write_list {
 	my ($mimetype, $desktop_file) = @_;
-	my $file = data_home(qw/applications defaults.list/);
+	my $file = config_home(qw/mimeapps.list/);
 	my $text;
 	if (-f $file) {
 		open LIST, '<', $file or croak "Could not read file: $file";
@@ -144,7 +154,6 @@ sub _write_list {
 		_mkdir($file);
 		$text = "[Default Applications]\n";
 	}
-
 	open LIST, '>', $file or croak "Could not write file: $file";
 	print LIST $text;
 	print LIST "$mimetype=$desktop_file;\n";
@@ -163,7 +172,6 @@ sub _find_file {
 sub _mkdir {
 	my $dir = shift;
 	return if -d $dir;
-
 	my ($vol, $dirs, undef) = File::Spec->splitpath($dir);
 	my @dirs = File::Spec->splitdir($dirs);
 	my $path = File::Spec->catpath($vol, shift @dirs);
@@ -171,7 +179,6 @@ sub _mkdir {
 		mkdir $path; # fails silently
 		$path = File::Spec->catdir($path, shift @dirs);
 	}
-
 	die "Could not create dir: $path\n" unless -d $path;
 }
 
@@ -270,11 +277,10 @@ It should however contain at least one word.
 
 =head1 NOTES
 
-At present the file with defaults is
-F<$XDG_DATA_HOME/applications/defaults.list>.
-This file is not specified in any freedesktop spec and if it gets standardized
-it should probably be located in C<$XDG_CONFIG_HOME>. For this module I tried
-to implement the status quo.
+The file with defaults is
+F<$XDG_CONFIG_HOME/mimeapps.list>, as indicated in
+the MIME Applications Associations spec. F<$XDG_DATA_HOME/applications/defaults.list>
+is still read for compatibility.
 
 =head1 AUTHOR
 
@@ -293,6 +299,10 @@ L<File::DesktopEntry>,
 L<File::MimeInfo>,
 L<File::MimeInfo::Magic>,
 L<File::BaseDir>
+
+=item freedesktop specifications used
+
+L<http://www.freedesktop.org/wiki/Specifications/mime-apps-spec/>
 
 L<http://freedesktop.org/wiki/Software/desktop-file-utils/>
 
