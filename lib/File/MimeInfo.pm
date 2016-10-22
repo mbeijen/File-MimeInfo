@@ -283,12 +283,13 @@ __END__
 
 =head1 NAME
 
-File::MimeInfo - Determine file type
+File::MimeInfo - Determine file type from the file name
 
 =head1 SYNOPSIS
 
   use File::MimeInfo;
   my $mime_type = mimetype($file);
+  my $mime_type2 = mimetype('test.png');
 
 =head1 DESCRIPTION
 
