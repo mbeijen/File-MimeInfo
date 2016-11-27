@@ -2,6 +2,15 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
+0.28  2016-11-27
+ - Follow the current mime-apps-spec (fixes #8, #20)
+   The current version of the mime-apps spec locates the per-user defaults
+   file in `$XDG_CONFIG_HOME/mimeapps.list`. Use that location, and fall
+   back to the per-system and distribution defaults as specified, with the
+   previous legacy defaults file as a final fallback.
+   Fix by Patrick Burroughs (Celti)
+ - POD clarifications by Nitish Bezzala
+
 0.27  2015-02-23
  - Allow to use mimeinfo on a Path::Tiny object. Reported by Smylers.
  - Misspelled NoDisplay attribute in .desktop file.
