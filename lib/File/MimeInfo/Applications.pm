@@ -3,7 +3,7 @@ package File::MimeInfo::Applications;
 use strict;
 use Carp;
 use File::Spec;
-use File::BaseDir qw/data_home data_dirs data_files/;
+use File::BaseDir qw/config_home config_dirs data_home data_dirs data_files/;
 use File::MimeInfo qw/mimetype_canon mimetype_isa/;
 use File::DesktopEntry;
 require Exporter;
@@ -83,11 +83,25 @@ sub mime_applications_set_custom {
 
 sub _default {
 	my $mimetype = shift;
-	my $file = data_home(qw/applications defaults.list/);
-	return undef unless -f $file && -r _;
+
+	my $user	= config_home(qw/mimeapps.list/);
+	my $system	= config_dirs(qw/mimeapps.list/);
+	my $deprecated	= data_home(qw/applications mimeapps.list/);
+	my $distro	= data_dirs(qw/applications mimeapps.list/);
+	my $legacy	= data_home(qw/applications defaults.list/);
+
+	unless ( ( -f $user
+	      || -f $system
+	      || -f $deprecated
+	      || -f $distro
+	      || -f $legacy )
+	      && -r _ ) {
+		return undef;
+	}
 
 	$Carp::CarpLevel++;
-	my @list = _read_list($mimetype, $file);
+	my @list =
+	  _read_list($mimetype, $user, $system, $deprecated, $distro, $legacy);
 	my $desktop_file = _find_file(reverse @list);
 	$Carp::CarpLevel--;
 
@@ -116,21 +130,32 @@ sub _others {
 }
 
 sub _read_list { # read list with "mime/type=foo.desktop;bar.desktop" format
-	my ($mimetype, $file) = @_;
+	my $mimetype = shift;
+
 	my @list;
-	open LIST, '<', $file or croak "Could not read file: $file";
-	while (<LIST>) {
-        /^\Q$mimetype\E=(.*)$/ or next;
-		push @list, grep defined($_), split ';', $1;
+	my $succeeded;
+
+	for my $file (@_) {
+		if (open LIST, '<', $file) {
+			$succeeded = 1;
+			while (<LIST>) {
+				/^\Q$mimetype\E=(.*)$/ or next;
+				push @list, grep defined($_), split ';', $1;
+			}
+			close LIST;
+		}
 	}
-	close LIST;
+
+	unless ($succeeded) {
+		croak "Could not read any defaults, tried:\n" . join("\t\n", @_);
+	}
 
 	return @list;
 }
 
 sub _write_list {
 	my ($mimetype, $desktop_file) = @_;
-	my $file = data_home(qw/applications defaults.list/);
+	my $file = config_home(qw/mimeapps.list/);
 	my $text;
 	if (-f $file) {
 		open LIST, '<', $file or croak "Could not read file: $file";
@@ -270,11 +295,12 @@ It should however contain at least one word.
 
 =head1 NOTES
 
-At present the file with defaults is
-F<$XDG_DATA_HOME/applications/defaults.list>.
-This file is not specified in any freedesktop spec and if it gets standardized
-it should probably be located in C<$XDG_CONFIG_HOME>. For this module I tried
-to implement the status quo.
+This module looks for associations files in the order specified in version 1.0
+of the MIME applications specification. It will also attempt a last-resort
+fallback to the legacy file
+F<$XDG_DATA_HOME/applications/defaults.list>. In all cases, it will only write
+to the recommended per-user defaults file located at
+F<$XDG_CONFIG_HOME/mimeapps.list>.
 
 =head1 AUTHOR
 
@@ -295,5 +321,6 @@ L<File::MimeInfo::Magic>,
 L<File::BaseDir>
 
 L<http://freedesktop.org/wiki/Software/desktop-file-utils/>
+L<http://freedesktop.org/wiki/Specifications/mime-apps-spec/>
 
 =cut
