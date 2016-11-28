@@ -93,7 +93,7 @@ File::MimeInfo::Rox - Open files by mimetype "Rox style"
   use File::MimeInfo::Magic;
   use File::MimeInfo::Rox qw/:magic/;
 
-  # open some file with the apropriate program
+  # open some file with the appropriate program
   mime_system($somefile);
 
   # more verbose version
