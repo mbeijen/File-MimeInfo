@@ -24,6 +24,9 @@ WriteMakefile (
   'CONFIGURE_REQUIRES' => {
     "ExtUtils::MakeMaker" => "6.30"
   },
+  'TEST_REQUIRES' => {
+      'Test::More' => '0.88',
+  },
   'LIBS'      => [''],
   'EXE_FILES' => [ 'mimetype', 'mimeopen' ],
   'dist' => {

@@ -2,6 +2,10 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
+0.28_01  2016-11-29
+ - Added t/000-report-versions-tiny.t to find out issue with Path::Tiny file
+   handles.
+
 0.28  2016-11-27
  - Follow the current mime-apps-spec (fixes #8, #20)
    The current version of the mime-apps spec locates the per-user defaults

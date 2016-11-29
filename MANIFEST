@@ -12,6 +12,7 @@ META.yml
 mimeopen
 mimetype
 README.md
+t/000-report-versions-tiny.t
 t/00_use_ok.t
 t/01_normal.t
 t/02_magic.t
