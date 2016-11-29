@@ -56,6 +56,7 @@ WriteMakefile (
         'Sean Smith <ssmith@ncsgraphics.com>',
         'Stefan Seifert <nine@detonation.org>',
         'brian m. carlson <sandals@crustytoothpaste.net>',
+        'gregor herrmann <gregoa@debian.org>',
     ],
   },
 );
