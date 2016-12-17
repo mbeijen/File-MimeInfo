@@ -10,7 +10,7 @@ require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT = qw(mimetype);
 our @EXPORT_OK = qw(extensions describe globs inodetype mimetype_canon mimetype_isa);
-our $VERSION = '0.28_01';
+our $VERSION = '0.28_02';
 our $DEBUG;
 
 our ($_hashed, $_hashed_aliases, $_hashed_subclasses);
@@ -108,6 +108,15 @@ sub default {
 		binmode FILE, ':utf8' unless $] < 5.008;
 		read FILE, $line, 32;
 		close FILE;
+	}
+	elsif (ref $file eq 'Path::Tiny') {
+		return undef unless $file->exists;
+		print STDERR "> File is Path::Tiny object and exists, "
+			. "trying default method\n" if $DEBUG;
+		open my $fh, '<', $file or return undef;
+		binmode FILE, ':utf8' unless $] < 5.008;
+		read $fh, $line, 32;
+		close $fh;
 	}
 	else {
 		print STDERR "> Trying default method on object\n" if $DEBUG;
