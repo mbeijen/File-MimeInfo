@@ -24,6 +24,7 @@ t/07_pod_cover.t
 t/08_changes.t
 t/09_no404s.t
 t/10filehandle.t
+t/11mimeinfo.t
 t/applications/foo.desktop
 t/applications/mimeinfo.cache
 t/applications/mirage.desktop
