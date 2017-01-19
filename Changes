@@ -2,6 +2,11 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
+0.28_01  2017-01-19
+ - `mimeinfo --stdin` did not work. Reported by Marius Gavrilescu,
+     Debian bug https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=784545
+     Added minimal tests for `mimeinfo`.
+
 0.28_01  2016-11-29
  - Spelling fix courtesy gregor herrmann, Debian Perl group (fixes #25)
  - Added t/000-report-versions-tiny.t to find out issue with Path::Tiny file
