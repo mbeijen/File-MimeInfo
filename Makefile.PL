@@ -25,6 +25,9 @@ WriteMakefile (
   'CONFIGURE_REQUIRES' => {
     "ExtUtils::MakeMaker" => "6.30"
   },
+  'TEST_REQUIRES' => {
+      'Test::More' => '0.88',
+  },
   'LIBS'      => [''],
   'EXE_FILES' => [ 'mimetype', 'mimeopen' ],
   'dist' => {
@@ -39,17 +42,23 @@ WriteMakefile (
       repository => 'https://github.com/mbeijen/File-MimeInfo',
       bugtracker => 'https://github.com/mbeijen/File-MimeInfo/issues',
     },
+    # a list of our awesome contributors generated from git
+    # using the command:
+    # git shortlog -se | cut  -f2- | sed "s/^/        '/;s/$/',/"
     x_contributors => [
-      'Michiel Beijen <michiel.beijen@gmail.com>',
-      'Christian Ludwig <chrissicool@gmail.com>',
-      'Bernhard Rosenkränzer <bero@lindev.ch>',
-      'David Steinbrunner <dsteinbrunner@pobox.com>',
-      'Jitka Plesnikova <jplesnik@redhat.com>',
-      'Jonathan Dowland <jmtd@debian.org>',
-      'Loïc Jean David Arjanen <arjanen.loic@gmail.com>',
-      'Sean Smith <ssmith@ncsgraphics.com>',
-      'Stefan Seifert <nine@detonation.org>',
-      'brian m. carlson <sandals@crustytoothpaste.net>',
+        'Bernhard Rosenkränzer <bero@lindev.ch>',
+        'Christian Ludwig <chrissicool@gmail.com>',
+        'David Steinbrunner <dsteinbrunner@pobox.com>',
+        'Jitka Plesnikova <jplesnik@redhat.com>',
+        'Jonathan Dowland <jmtd@debian.org>',
+        'Loïc Jean David Arjanen <arjanen.loic@gmail.com>',
+        'Michiel Beijen <michiel.beijen@gmail.com>',
+        'Nitish Bezzala <nbezzala@yahoo.com>',
+        'Patrick Burroughs (Celti) <celti@celti.name>',
+        'Sean Smith <ssmith@ncsgraphics.com>',
+        'Stefan Seifert <nine@detonation.org>',
+        'brian m. carlson <sandals@crustytoothpaste.net>',
+        'gregor herrmann <gregoa@debian.org>',
     ],
   },
 );

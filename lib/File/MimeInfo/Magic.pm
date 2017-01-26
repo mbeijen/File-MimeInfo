@@ -17,11 +17,12 @@ BEGIN {
 our @ISA = qw(Exporter File::MimeInfo);
 our @EXPORT = qw(mimetype);
 our @EXPORT_OK = qw(extensions describe globs inodetype magic);
-our $VERSION = '0.27';
+our $VERSION = '0.28_03';
 our $DEBUG;
 
 our $_hashed = 0;
-our (@magic_80, @magic, $max_buffer);
+our $max_buffer = 32;
+our (@magic_80, @magic);
 # @magic_80 and @magic are used to store the parse tree of magic data
 # @magic_80 contains magic rules with priority 80 and higher, @magic the rest
 # $max_buffer contains the maximum number of chars to be buffered from a non-seekable

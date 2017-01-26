@@ -10,6 +10,7 @@ if ($@) {
 }
 
 is(mimetype(path('test.png')), 'image/png',  'mimetype of test.png');
+is(mimetype(path('../t/test.png')), 'image/png',  'mimetype of file with path');
 is(inodetype(path('test.png')), undef,       'inodetype of test.png');
 is(globs(path('test.png')),     'image/png', 'globs of test.png');
 

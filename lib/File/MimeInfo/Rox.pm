@@ -10,7 +10,7 @@ our @ISA = qw(Exporter);
 our @EXPORT = qw(mime_exec mime_system);
 our @EXPORT_OK = qw(suggest_script_name);
 our %EXPORT_TAGS = (magic => \@EXPORT);
-our $VERSION = '0.27';
+our $VERSION = '0.28_03';
 our @choicespath = (
 	config_home('rox.sourceforge.net'),
 	File::Spec->catdir($ENV{HOME}, 'Choices'),
@@ -93,7 +93,7 @@ File::MimeInfo::Rox - Open files by mimetype "Rox style"
   use File::MimeInfo::Magic;
   use File::MimeInfo::Rox qw/:magic/;
 
-  # open some file with the apropriate program
+  # open some file with the appropriate program
   mime_system($somefile);
 
   # more verbose version

@@ -3,12 +3,12 @@ package File::MimeInfo::Applications;
 use strict;
 use Carp;
 use File::Spec;
-use File::BaseDir qw/config_home data_home data_dirs data_files/;
+use File::BaseDir qw/config_home config_dirs data_home data_dirs data_files/;
 use File::MimeInfo qw/mimetype_canon mimetype_isa/;
 use File::DesktopEntry;
 require Exporter;
 
-our $VERSION = '0.27';
+our $VERSION = '0.28_03';
 
 our @ISA = qw(Exporter);
 our @EXPORT = qw(
@@ -83,12 +83,24 @@ sub mime_applications_set_custom {
 
 sub _default {
 	my $mimetype = shift;
-        my $legacy_file = data_home(qw/applications defaults.list/);
-	my $compat_file = data_home(qw/applications mimeapps.list/);
-	my $file = config_home(qw/mimeapps.list/);
-	return undef unless (-f $file || -f $legacy_file) && -r _;
+	my $user	= config_home(qw/mimeapps.list/);
+	my $system	= config_dirs(qw/mimeapps.list/);
+	my $deprecated	= data_home(qw/applications mimeapps.list/);
+	my $distro	= data_dirs(qw/applications mimeapps.list/);
+	my $legacy	= data_home(qw/applications defaults.list/);
+
+	unless ( ( -f $user
+	      || -f $system
+	      || -f $deprecated
+	      || -f $distro
+	      || -f $legacy )
+	      && -r _ ) {
+		return undef;
+	}
+
 	$Carp::CarpLevel++;
-	my @list = _read_list($mimetype, $file, $compat_file, $legacy_file);
+	my @list =
+	  _read_list($mimetype, $user, $system, $deprecated, $distro, $legacy);
 	my $desktop_file = _find_file(reverse @list);
 	$Carp::CarpLevel--;
 	return $desktop_file;
@@ -114,36 +126,25 @@ sub _others {
 }
 
 sub _read_list { # read list with "mime/type=foo.desktop;bar.desktop" format
-	my ($mimetype, $file, $compat_file, $legacy_file) = @_;
+	my $mimetype = shift;
+
 	my @list;
-	my $has_succeeded = 0;
-	if(open LIST, '<', $file) {
-                $has_succeeded = 1;
-                while (<LIST>) {
-                        /^\Q$mimetype\E=(.*)$/ or next;
-		        push @list, grep defined($_), split ';', $1;
-	        }
-	        close LIST;
+	my $succeeded;
+
+	for my $file (@_) {
+		if (open LIST, '<', $file) {
+			$succeeded = 1;
+			while (<LIST>) {
+				/^\Q$mimetype\E=(.*)$/ or next;
+				push @list, grep defined($_), split ';', $1;
+			}
+			close LIST;
+		}
 	}
-        if(open COMPAT, '<', $compat_file) {
-                $has_succeeded = 1;
-                while (<COMPAT>) {
-                        /^\Q$mimetype\E=(.*)$/ or next;
-                        push @list, grep defined($_), split ';', $1;
-                }
-                close COMPAT;
-        }
-        if(open LEGACY, '<', $legacy_file) {
-                $has_succeeded = 1;
-                while (<LEGACY>) {
-                        /^\Q$mimetype\E=(.*)$/ or next;
-                        push @list, grep defined($_), split ';', $1;
-                }
-                close LEGACY;
-        }
-        if(!$has_succeeded) {
-                croak "Could read neither file: $file nor compat file: $compat_file nor legacy file: $legacy_file";
-        }
+
+	unless ($succeeded) {
+		croak "Could not read any defaults, tried:\n" . join("\t\n", @_);
+	}
 	return @list;
 }
 
@@ -286,11 +287,12 @@ It should however contain at least one word.
 
 =head1 NOTES
 
-The file with defaults is
-F<$XDG_CONFIG_HOME/mimeapps.list>, as indicated in
-the MIME Applications Associations spec. F<$XDG_DATA_HOME/applications/mimeapps.list>
-and F<$XDG_DATA_HOME/applications/defaults.list> are still read for compatibility with
-resp. previous implementations of the spec and previous versions of the package.
+This module looks for associations files in the order specified in version 1.0
+of the MIME applications specification. It will also attempt a last-resort
+fallback to the legacy file
+F<$XDG_DATA_HOME/applications/defaults.list>. In all cases, it will only write
+to the recommended per-user defaults file located at
+F<$XDG_CONFIG_HOME/mimeapps.list>.
 
 =head1 AUTHOR
 
@@ -319,6 +321,7 @@ L<http://www.freedesktop.org/wiki/Specifications/mime-apps-spec/>
 =item freedesktop desktop entries utilities
 
 L<http://freedesktop.org/wiki/Software/desktop-file-utils/>
+L<http://freedesktop.org/wiki/Specifications/mime-apps-spec/>
 
 =back
 
