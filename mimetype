@@ -7,6 +7,10 @@ $|++;
 # ########## #
 # Parse ARGV #
 # ########## #
+use Encode::Locale;
+use Encode;
+@ARGV = map { decode(locale => $_, 1) } @ARGV;
+
 my %args = ();
 my %opts = (
 	# name	=> [char, expect_arg_bit ]
