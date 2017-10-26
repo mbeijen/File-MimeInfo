@@ -243,10 +243,11 @@ sub _read_map_files {
 		next if grep {$_ eq $file} @done;
 		open MAP, '<', $file || croak "Could not open file '$file' for reading";
 		binmode MAP, ':utf8' unless $] < 5.008;
-		while (<MAP>) {
-			next if /^\s*#/ or ! /\S/; # skip comments and empty lines
-			chomp;
-			my ($k, $v) = split /\s+/, $_, 2;
+		while (my $line = <MAP>) {
+			next unless $line =~ m/\S/; # skip empty lines
+			next if $line =~ m/^\s*#/;  # skip comment lines
+			chomp $line;
+			my ($k, $v) = split m/\s+/, $line, 2;
 			if ($list) {
 				$map{$k} = [] unless $map{$k};
 				push @{$map{$k}}, $v;
