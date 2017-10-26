@@ -53,6 +53,7 @@ WriteMakefile (
         'Michiel Beijen <michiel.beijen@gmail.com>',
         'Nitish Bezzala <nbezzala@yahoo.com>',
         'Patrick Burroughs (Celti) <celti@celti.name>',
+        'Rudolf Leermakers <rudolf@hatsuseno.org>',
         'Sean Smith <ssmith@ncsgraphics.com>',
         'Stefan Seifert <nine@detonation.org>',
         'brian m. carlson <sandals@crustytoothpaste.net>',
