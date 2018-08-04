@@ -14,4 +14,6 @@ is(mimetype(path('../t/test.png')), 'image/png',  'mimetype of file with path');
 is(inodetype(path('test.png')), undef,       'inodetype of test.png');
 is(globs(path('test.png')),     'image/png', 'globs of test.png');
 
+is(File::MimeInfo->default(path(__FILE__)), 'text/plain', "default methods works");
+
 done_testing;

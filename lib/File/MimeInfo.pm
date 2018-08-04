@@ -2,6 +2,7 @@ package File::MimeInfo;
 
 use strict;
 use Carp;
+use Scalar::Util qw(blessed);
 use Fcntl 'SEEK_SET';
 use File::Spec;
 use File::BaseDir qw/data_files/;
@@ -109,7 +110,7 @@ sub default {
 		read FILE, $line, 32;
 		close FILE;
 	}
-	elsif (ref $file eq 'Path::Tiny') {
+	elsif (blessed($file) && $file->isa('Path::Tiny')) {
 		return undef unless $file->exists;
 		print STDERR "> File is Path::Tiny object and exists, "
 			. "trying default method\n" if $DEBUG;
