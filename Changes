@@ -2,6 +2,9 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
+0.29  2018-08-05
+ - Stable release to CPAN.
+
 0.28_03  2017-01-22
  - `mimeinfo --stdin` did not work. Reported by Marius Gavrilescu,
      Debian bug https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=784545
