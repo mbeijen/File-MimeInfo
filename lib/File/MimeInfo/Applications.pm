@@ -83,7 +83,6 @@ sub mime_applications_set_custom {
 
 sub _default {
 	my $mimetype = shift;
-
 	my $user	= config_home(qw/mimeapps.list/);
 	my $system	= config_dirs(qw/mimeapps.list/);
 	my $deprecated	= data_home(qw/applications mimeapps.list/);
@@ -104,13 +103,11 @@ sub _default {
 	  _read_list($mimetype, $user, $system, $deprecated, $distro, $legacy);
 	my $desktop_file = _find_file(reverse @list);
 	$Carp::CarpLevel--;
-
 	return $desktop_file;
 }
 
 sub _others {
 	my $mimetype = shift;
-
 	$Carp::CarpLevel++;
 	my (@list, @done);
 	for my $dir (data_dirs('applications')) {
@@ -125,7 +122,6 @@ sub _others {
 		}
 	}
 	$Carp::CarpLevel--;
-
 	return @list;
 }
 
@@ -149,7 +145,6 @@ sub _read_list { # read list with "mime/type=foo.desktop;bar.desktop" format
 	unless ($succeeded) {
 		croak "Could not read any defaults, tried:\n" . join("\t\n", @_);
 	}
-
 	return @list;
 }
 
@@ -169,7 +164,6 @@ sub _write_list {
 		_mkdir($file);
 		$text = "[Default Applications]\n";
 	}
-
 	open LIST, '>', $file or croak "Could not write file: $file";
 	print LIST $text;
 	print LIST "$mimetype=$desktop_file;\n";
@@ -188,7 +182,6 @@ sub _find_file {
 sub _mkdir {
 	my $dir = shift;
 	return if -d $dir;
-
 	my ($vol, $dirs, undef) = File::Spec->splitpath($dir);
 	my @dirs = File::Spec->splitdir($dirs);
 	my $path = File::Spec->catpath($vol, shift @dirs);
@@ -196,7 +189,6 @@ sub _mkdir {
 		mkdir $path; # fails silently
 		$path = File::Spec->catdir($path, shift @dirs);
 	}
-
 	die "Could not create dir: $path\n" unless -d $path;
 }
 
@@ -320,7 +312,17 @@ L<File::MimeInfo>,
 L<File::MimeInfo::Magic>,
 L<File::BaseDir>
 
+=over 4
+
+=item freedesktop specifications used
+
+L<http://www.freedesktop.org/wiki/Specifications/mime-apps-spec/>
+
+=item freedesktop desktop entries utilities
+
 L<http://freedesktop.org/wiki/Software/desktop-file-utils/>
 L<http://freedesktop.org/wiki/Specifications/mime-apps-spec/>
+
+=back
 
 =cut

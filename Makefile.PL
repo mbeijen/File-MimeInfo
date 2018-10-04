@@ -20,6 +20,7 @@ WriteMakefile (
     'Pod::Usage'         => 0,
     'File::BaseDir'      => '0.03',
     'File::DesktopEntry' => '0.04',
+    'XML::LibXML'        => '1.61',
   },
   'CONFIGURE_REQUIRES' => {
     "ExtUtils::MakeMaker" => "6.30"
@@ -50,6 +51,7 @@ WriteMakefile (
         'David Steinbrunner <dsteinbrunner@pobox.com>',
         'Jitka Plesnikova <jplesnik@redhat.com>',
         'Jonathan Dowland <jmtd@debian.org>',
+        'Loïc Jean David Arjanen <arjanen.loic@gmail.com>',
         'Michiel Beijen <michiel.beijen@gmail.com>',
         'Nitish Bezzala <nbezzala@yahoo.com>',
         'Patrick Burroughs (Celti) <celti@celti.name>',
