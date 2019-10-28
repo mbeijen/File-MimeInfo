@@ -454,6 +454,10 @@ in a straightforward manner only utf8 is supported (because the spec recommends 
 This module does not yet check extended attributes for a mimetype.
 Patches for this are very welcome.
 
+To install on MacOS, additional packages need to be istalled:
+
+    brew install desktop-file-utils shared-mime-info
+
 =head1 AUTHOR
 
 Jaap Karssenberg E<lt>pardus@cpan.orgE<gt>
