@@ -454,9 +454,13 @@ in a straightforward manner only utf8 is supported (because the spec recommends 
 This module does not yet check extended attributes for a mimetype.
 Patches for this are very welcome.
 
-To install on MacOS, additional packages need to be istalled:
+This module uses the FreeDesktop.org shared mime info database. On your desktop
+linux this is typically pre-installed so it's not a problem. On your server
+you can install the shared-mime-info package via apt or dnf or apk or whatnot.
 
-    brew install desktop-file-utils shared-mime-info
+To install on macOS, you can install it like this:
+
+    brew install shared-mime-info
 
 =head1 AUTHOR
 
