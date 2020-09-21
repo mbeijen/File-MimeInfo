@@ -11,6 +11,6 @@ perl:
   - "5.8"
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq desktop-file-utils
+  - sudo apt-get install -qq shared-mime-info
 install:
     - cpanm --quiet File::BaseDir File::DesktopEntry IO::Scalar Path::Tiny Test::Pod Test::Pod::Coverage Test::CPAN::Changes
