@@ -136,13 +136,6 @@ unless (length $mimetype) {
 
 my ($default, @other) = mime_applications_all($mimetype);
 
-## Removed this because user should always be able to select "Other..."
-#unless($default or @other) {
-#	print STDERR "No applications found for mimetype: $mimetype\n";
-#	exit 6;
-#}
-##
-
 if    ($args{'no-ask'}) {
 	$default = defined($default) ? $default : $other[0];
 }
@@ -154,6 +147,12 @@ elsif ($args{'ask-default'}) {
 }
 elsif (! defined $default) {
 	($default) = (@other == 1) ? (@other) : choose($mimetype, 1, @other);
+}
+
+unless($default) {
+	# $default can still be undef, if $other[0] is undef and no-ask is set.
+	print STDERR "No applications found for mimetype: $mimetype\n.";
+	exit 6;
 }
 
 print 'Opening '.join(', ', map qq{"$_"}, @ARGV)
