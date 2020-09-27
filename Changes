@@ -2,6 +2,14 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
+0.29_01  2020-09-27
+ - Properly decode parameters for `mimeopen` and `mimetype`.
+    Patch provided by Nikos Skalkotos
+ - Fix for undefined defaults (fixes #36).
+    Reported & fix provided by Martin Vassor
+ - Improved installation instructions, specifically on macOS, by
+    Oleg Kostyuk & Michiel Beijen
+
 0.29  2018-08-05
  - Stable release to CPAN.
 
