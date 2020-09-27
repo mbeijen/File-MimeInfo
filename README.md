@@ -6,6 +6,12 @@ trying to implement the freedesktop specification for using the shared
 mime-info database. The package comes with a script called `mimetype`
 that can be used as a `file(1)` work-alike.
 
+Because this module uses the FreeDesktop MIME database, it's most
+suited for use in perl scripts that run on a desktop OS; in fact,
+this module is typically pre-installed on Debian and Ubuntu OSes
+so you can use its command line script `mimeopen` to open files in
+the GUI just like you can use `open` on macOS.
+
 ## INSTALLATION
 
 To install this module type the following:
