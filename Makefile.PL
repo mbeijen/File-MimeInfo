@@ -16,6 +16,7 @@ WriteMakefile (
   'BUILD_REQUIRES'   => {
     'Carp'               => 0,
     'Exporter'           => 0,
+    'Encode::Locale'     => 0,
     'Fcntl'              => 0,
     'Pod::Usage'         => 0,
     'File::BaseDir'      => '0.03',
