@@ -2,6 +2,9 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
+0.29_02  2020-10-01
+ - Added explicit dependency on Encode::Locale
+
 0.29_01  2020-09-27
  - Properly decode parameters for `mimeopen` and `mimetype`.
     Patch provided by Nikos Skalkotos
