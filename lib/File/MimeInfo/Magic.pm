@@ -89,18 +89,18 @@ sub _check_rule {
 
     # Read
     if (ref $fh eq 'GLOB') {
-        seek($fh, $$ref[0], SEEK_SET);	# seek offset
-        read($fh, $line, $$ref[1]);	# read max length
+        seek($fh, $$ref[0], SEEK_SET); # seek offset
+        read($fh, $line, $$ref[1]);    # read max length
     }
     else { # allowing for IO::Something
-        $fh->seek($$ref[0], SEEK_SET);	# seek offset
-        $fh->read($line, $$ref[1]);	# read max length
+        $fh->seek($$ref[0], SEEK_SET); # seek offset
+        $fh->read($line, $$ref[1]);    # read max length
     }
 
     # Match regex
-    $line = unpack 'b*', $line if $$ref[2];	# unpack to bits if using mask
-    return undef unless $line =~ $$ref[3];	# match regex
-    print STDERR	'>', '>'x$lev, ' Value "', _escape_bytes($2),
+    $line = unpack 'b*', $line if $$ref[2]; # unpack to bits if using mask
+    return undef unless $line =~ $$ref[3];  # match regex
+    print STDERR '>', '>'x$lev, ' Value "', _escape_bytes($2),
             '" at offset ', $$ref[1]+length($1),
             " matches at $$ref[4]\n"
         if $DEBUG;
@@ -206,7 +206,7 @@ sub _hash_magic {
             $o, $end,    # offset, offset+length+range
             $mdef,       # boolean for mask
             qr/$reg/sm,  # the regex to match
-            undef	     # debug data
+            undef        # debug data
         ];
         $$ref[-1][-1] = "$file line $line" if $DEBUG;
     }

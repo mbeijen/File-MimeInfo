@@ -84,11 +84,11 @@ sub mime_applications_set_custom {
 sub _default {
     my $mimetype = shift;
 
-    my $user	= config_home(qw/mimeapps.list/);
-    my $system	= config_dirs(qw/mimeapps.list/);
-    my $deprecated	= data_home(qw/applications mimeapps.list/);
-    my $distro	= data_dirs(qw/applications mimeapps.list/);
-    my $legacy	= data_home(qw/applications defaults.list/);
+    my $user       = config_home(qw/mimeapps.list/);
+    my $system     = config_dirs(qw/mimeapps.list/);
+    my $deprecated = data_home(qw/applications mimeapps.list/);
+    my $distro     = data_dirs(qw/applications mimeapps.list/);
+    my $legacy     = data_home(qw/applications defaults.list/);
 
     unless ( ( -f $user
         || -f $system

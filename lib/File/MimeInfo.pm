@@ -32,7 +32,7 @@ sub mimetype {
     croak 'subroutine "mimetype" needs a filename as argument' unless defined $file;
     return
         inodetype($file) ||
-        globs($file)	 ||
+        globs($file)     ||
         default($file);
 }
 
@@ -41,7 +41,7 @@ sub inodetype {
     print STDERR "> Checking inode type\n" if $DEBUG;
     lstat $file or return undef;
     return undef if -f _;
-    my $t =	(-l $file) ? 'inode/symlink' :  # Win32 does not like '_' here
+    my $t = (-l $file) ? 'inode/symlink' :  # Win32 does not like '_' here
         (-d _) ? 'inode/directory'   :
         (-p _) ? 'inode/fifo'        :
         (-c _) ? 'inode/chardevice'  :
@@ -159,6 +159,8 @@ EOT
     }
     $_hashed = 1;
 }
+
+
 
 sub _hash_globs {
     my $file = shift;
