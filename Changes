@@ -18,8 +18,8 @@ Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
 0.28_03  2017-01-22
  - `mimeinfo --stdin` did not work. Reported by Marius Gavrilescu,
-     Debian bug https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=784545
-     Added minimal tests for `mimeinfo`.
+    Debian bug https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=784545
+    Added minimal tests for `mimeinfo`.
 
 0.28_02  2016-12-17
  - Improved handling of Path::Tiny objects in default method.
@@ -27,21 +27,21 @@ Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 0.28_01  2016-11-29
  - Spelling fix courtesy gregor herrmann, Debian Perl group (fixes #25)
  - Added t/000-report-versions-tiny.t to find out issue with Path::Tiny file
-   handles.
+    handles.
 
 0.28  2016-11-27
  - Follow the current mime-apps-spec (fixes #8, #20)
-   The current version of the mime-apps spec locates the per-user defaults
-   file in `$XDG_CONFIG_HOME/mimeapps.list`. Use that location, and fall
-   back to the per-system and distribution defaults as specified, with the
-   previous legacy defaults file as a final fallback.
-   Fix by Patrick Burroughs (Celti)
+    The current version of the mime-apps spec locates the per-user defaults
+    file in `$XDG_CONFIG_HOME/mimeapps.list`. Use that location, and fall
+    back to the per-system and distribution defaults as specified, with the
+    previous legacy defaults file as a final fallback.
+    Fix by Patrick Burroughs (Celti)
  - POD clarifications by Nitish Bezzala
 
 0.27  2015-02-23
  - Allow to use mimeinfo on a Path::Tiny object. Reported by Smylers.
  - Misspelled NoDisplay attribute in .desktop file.
-   Fix by Bernhard Rosenkraenzer (berolinux)
+    Fix by Bernhard Rosenkraenzer (berolinux)
  - Fix typos in README by Sean Smith (ncstang) as part of CPAN Pull Request
     Challenge February 2015.
 
@@ -58,8 +58,8 @@ Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
 0.23  2014-04-02
  - Fixed opening of files with '+' in mime type using
-   File::MimeInfo::Applications.
-   Debian bug 690334, brian m. carlson.
+    File::MimeInfo::Applications.
+    Debian bug 690334, brian m. carlson.
 
 0.22  2014-02-27
  - Fixed Double-close on a filehandle issue (RT 93221) - Christian Ludwig.
@@ -154,7 +154,7 @@ Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 0.9   2003-12-05
  - Fixed magic() and default() to work on IO::something objects
  - Added a "no warnings" in the default routine to suppress warnings when
-    input is latin2 (thus neither ascii or utf8). Not sure whether this 
+    input is latin2 (thus neither ascii or utf8). Not sure whether this
     really fixes the problem but it at least ignores it.
     The problem was reported by Daniel Raska.
 

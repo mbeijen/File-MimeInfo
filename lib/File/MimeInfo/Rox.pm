@@ -12,72 +12,72 @@ our @EXPORT_OK = qw(suggest_script_name);
 our %EXPORT_TAGS = (magic => \@EXPORT);
 our $VERSION = '0.29_02';
 our @choicespath = (
-	config_home('rox.sourceforge.net'),
-	File::Spec->catdir($ENV{HOME}, 'Choices'),
-	data_dirs('Choices'),
+    config_home('rox.sourceforge.net'),
+    File::Spec->catdir($ENV{HOME}, 'Choices'),
+    data_dirs('Choices'),
 );
 our ($DEBUG);
 
 sub import {
-	my $parent = (grep {$_ eq q/:magic/} @_)
-		? q/File::MimeInfo::Magic/
-		: q/File::MimeInfo/;
-	eval "use $parent";
-	die $@ if $@;
-	goto \&Exporter::import;
+    my $parent = (grep {$_ eq q/:magic/} @_)
+        ? q/File::MimeInfo::Magic/
+        : q/File::MimeInfo/;
+    eval "use $parent";
+    die $@ if $@;
+    goto \&Exporter::import;
 }
 
 sub mime_system { _do_mime('system', @_) }
 sub mime_exec   { _do_mime('exec',   @_) }
 
 sub _do_mime {
-	my ($act, $file, $mimet) = (shift, shift, shift);
+    my ($act, $file, $mimet) = (shift, shift, shift);
 
-	$mimet ||= mimetype($file);
-	return undef unless $mimet;
-	print "Using mimetype: $mimet\n" if $DEBUG;
+    $mimet ||= mimetype($file);
+    return undef unless $mimet;
+    print "Using mimetype: $mimet\n" if $DEBUG;
 
-	my $script = _locate_script($mimet);
-	return undef unless $script;
+    my $script = _locate_script($mimet);
+    return undef unless $script;
 
-	print "Going to $act: $script $file\n" if $DEBUG;
-	($act eq 'exec')
-		? exec($script, $file, @_)
-		: (system($script, $file, @_) == 0)
-			or croak "couldn't $act: $script $file";
-	42;
+    print "Going to $act: $script $file\n" if $DEBUG;
+    ($act eq 'exec')
+        ? exec($script, $file, @_)
+        : (system($script, $file, @_) == 0)
+            or croak "couldn't $act: $script $file";
+    42;
 }
 
 sub _locate_script {
-	my $mime = shift;
-	$mime =~ /^(\w+)/;
-	my $media = $1;
-	$mime =~ s#/#_#;
-	my @p = $ENV{CHOICESPATH}
-		? split(/:/, $ENV{CHOICESPATH})
-		: (@choicespath);
-	my $script;
-	for (
-		map("$_/MIME-types/$mime", @p),
-		map("$_/MIME-types/$media", @p)
-	) {
-		print "looking for: $_\n" if $DEBUG;
-		next unless -e $_;
-		$script = $_;
-		last;
-	}
-	return undef unless $script;
-	$script = "$script/AppRun" if -d $script;
-	return -f $script ? $script : undef;
+    my $mime = shift;
+    $mime =~ /^(\w+)/;
+    my $media = $1;
+    $mime =~ s#/#_#;
+    my @p = $ENV{CHOICESPATH}
+        ? split(/:/, $ENV{CHOICESPATH})
+        : (@choicespath);
+    my $script;
+    for (
+        map("$_/MIME-types/$mime", @p),
+        map("$_/MIME-types/$media", @p)
+    ) {
+        print "looking for: $_\n" if $DEBUG;
+        next unless -e $_;
+        $script = $_;
+        last;
+    }
+    return undef unless $script;
+    $script = "$script/AppRun" if -d $script;
+    return -f $script ? $script : undef;
 }
 
 sub suggest_script_name {
-	my $m = pop;
-	$m =~ s#/#_#;
-	my @p = $ENV{CHOICESPATH}
-		? split(/:/, $ENV{CHOICESPATH})
-		: (@choicespath);
-	return "$p[0]/MIME-types", $m;
+    my $m = pop;
+    $m =~ s#/#_#;
+    my @p = $ENV{CHOICESPATH}
+        ? split(/:/, $ENV{CHOICESPATH})
+        : (@choicespath);
+    return "$p[0]/MIME-types", $m;
 }
 
 1;
@@ -98,9 +98,9 @@ File::MimeInfo::Rox - Open files by mimetype "Rox style"
 
   # more verbose version
   my $mt = mimetype($somefile)
-      || die "Could not find mimetype for $somefile\n";
+    || die "Could not find mimetype for $somefile\n";
   mime_system($somefile, $mt)
-      || die "No program to open $somefile available\n";
+    || die "No program to open $somefile available\n";
 
 
 =head1 DESCRIPTION

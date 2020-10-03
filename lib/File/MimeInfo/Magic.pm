@@ -8,10 +8,10 @@ require File::MimeInfo;
 require Exporter;
 
 BEGIN {
-	no strict "refs";
-	for (qw/extensions describe globs inodetype default/) {
-		*{$_} = \&{"File::MimeInfo::$_"};
-	}
+    no strict "refs";
+    for (qw/extensions describe globs inodetype default/) {
+        *{$_} = \&{"File::MimeInfo::$_"};
+    }
 }
 
 our @ISA = qw(Exporter File::MimeInfo);
@@ -29,222 +29,222 @@ our (@magic_80, @magic);
 # filehandle in order to do magic mimetyping
 
 sub mimetype {
-	my $file = pop;
-	croak 'subroutine "mimetype" needs a filename as argument' unless defined $file;
+    my $file = pop;
+    croak 'subroutine "mimetype" needs a filename as argument' unless defined $file;
 
-	return magic($file) || default($file) if ref $file;
-	return &File::MimeInfo::mimetype($file) unless -s $file and -r _;
+    return magic($file) || default($file) if ref $file;
+    return &File::MimeInfo::mimetype($file) unless -s $file and -r _;
 
-	my ($mimet, $fh);
-	return $mimet if $mimet = inodetype($file);
+    my ($mimet, $fh);
+    return $mimet if $mimet = inodetype($file);
 
-	($mimet, $fh) = _magic($file, \@magic_80); # high priority rules
-	return $mimet if $mimet;
+    ($mimet, $fh) = _magic($file, \@magic_80); # high priority rules
+    return $mimet if $mimet;
 
-	return $mimet if $mimet = globs($file);
+    return $mimet if $mimet = globs($file);
 
-	($mimet, $fh) = _magic($fh, \@magic); # lower priority rules
-	close $fh if ref $fh;
+    ($mimet, $fh) = _magic($fh, \@magic); # lower priority rules
+    close $fh if ref $fh;
 
-	return $mimet if $mimet;
-	return default($file);
+    return $mimet if $mimet;
+    return default($file);
 }
 
 sub magic {
-	my $file = pop;
-	croak 'subroutine "magic" needs a filename as argument' unless defined $file;
-	return undef unless ref($file) || -s $file;
-	print STDERR "> Checking all magic rules\n" if $DEBUG;
+    my $file = pop;
+    croak 'subroutine "magic" needs a filename as argument' unless defined $file;
+    return undef unless ref($file) || -s $file;
+    print STDERR "> Checking all magic rules\n" if $DEBUG;
 
-	my ($mimet, $fh) = _magic($file, \@magic_80, \@magic);
-	close $fh unless ref $file;
+    my ($mimet, $fh) = _magic($file, \@magic_80, \@magic);
+    close $fh unless ref $file;
 
-	return $mimet;
+    return $mimet;
 }
 
 sub _magic {
-	my ($file, @rules) = @_;
-	_rehash() unless $_hashed;
+    my ($file, @rules) = @_;
+    _rehash() unless $_hashed;
 
-	my $fh;
-	unless (ref $file) {
-		open $fh, '<', $file or return undef;
-		binmode $fh;
-	}
-	else { $fh = $file }
+    my $fh;
+    unless (ref $file) {
+        open $fh, '<', $file or return undef;
+        binmode $fh;
+    }
+    else { $fh = $file }
 
-	for my $type (map @$_, @rules) {
-		for (2..$#$type) {
-			next unless _check_rule($$type[$_], $fh, 0);
-			close $fh unless ref $file;
-			return ($$type[1], $fh);
-		}
-	}
-	return (undef, $fh);
+    for my $type (map @$_, @rules) {
+        for (2..$#$type) {
+            next unless _check_rule($$type[$_], $fh, 0);
+            close $fh unless ref $file;
+            return ($$type[1], $fh);
+        }
+    }
+    return (undef, $fh);
 }
 
 sub _check_rule {
-	my ($ref, $fh, $lev) = @_;
-	my $line;
+    my ($ref, $fh, $lev) = @_;
+    my $line;
 
-	# Read
-	if (ref $fh eq 'GLOB') {
-		seek($fh, $$ref[0], SEEK_SET);	# seek offset
-		read($fh, $line, $$ref[1]);	# read max length
-	}
-	else { # allowing for IO::Something
-		$fh->seek($$ref[0], SEEK_SET);	# seek offset
-		$fh->read($line, $$ref[1]);	# read max length
-	}
+    # Read
+    if (ref $fh eq 'GLOB') {
+        seek($fh, $$ref[0], SEEK_SET);	# seek offset
+        read($fh, $line, $$ref[1]);	# read max length
+    }
+    else { # allowing for IO::Something
+        $fh->seek($$ref[0], SEEK_SET);	# seek offset
+        $fh->read($line, $$ref[1]);	# read max length
+    }
 
-	# Match regex
-	$line = unpack 'b*', $line if $$ref[2];	# unpack to bits if using mask
-	return undef unless $line =~ $$ref[3];	# match regex
-	print STDERR	'>', '>'x$lev, ' Value "', _escape_bytes($2),
-			'" at offset ', $$ref[1]+length($1),
-			" matches at $$ref[4]\n"
-		if $DEBUG;
-	return 1 unless $#$ref > 4;
+    # Match regex
+    $line = unpack 'b*', $line if $$ref[2];	# unpack to bits if using mask
+    return undef unless $line =~ $$ref[3];	# match regex
+    print STDERR	'>', '>'x$lev, ' Value "', _escape_bytes($2),
+            '" at offset ', $$ref[1]+length($1),
+            " matches at $$ref[4]\n"
+        if $DEBUG;
+    return 1 unless $#$ref > 4;
 
-	# Check nested rules and recurs
-	for (5..$#$ref) {
-		return 1 if _check_rule($$ref[$_], $fh, $lev+1);
-	}
-	print STDERR "> Failed nested rules\n" if $DEBUG && ! $lev;
-	return 0;
+    # Check nested rules and recurs
+    for (5..$#$ref) {
+        return 1 if _check_rule($$ref[$_], $fh, $lev+1);
+    }
+    print STDERR "> Failed nested rules\n" if $DEBUG && ! $lev;
+    return 0;
 }
 
 sub rehash {
-	&File::MimeInfo::rehash();
-	&_rehash();
-	#use Data::Dumper;
-	#print Dumper \@magic_80, \@magic;
+    &File::MimeInfo::rehash();
+    &_rehash();
+    #use Data::Dumper;
+    #print Dumper \@magic_80, \@magic;
 }
 
 sub _rehash {
-	local $_; # limit scope of $_ ... :S
-	($max_buffer, @magic_80, @magic) = (32); # clear data
-	my @magicfiles = @File::MimeInfo::DIRS
-		? ( grep {-e $_ && -r $_}
-			map "$_/magic", @File::MimeInfo::DIRS )
-		: ( reverse data_files('mime/magic') ) ;
-	my @done;
-	for my $file (@magicfiles) {
-		next if grep {$file eq $_} @done;
-		_hash_magic($file);
-		push @done, $file;
-	}
-	@magic = sort {$$b[0] <=> $$a[0]} @magic;
-	while ($magic[0][0] >= 80) {
-		push @magic_80, shift @magic;
-	}
-	$_hashed = 1;
+    local $_; # limit scope of $_ ... :S
+    ($max_buffer, @magic_80, @magic) = (32); # clear data
+    my @magicfiles = @File::MimeInfo::DIRS
+        ? ( grep {-e $_ && -r $_}
+            map "$_/magic", @File::MimeInfo::DIRS )
+        : ( reverse data_files('mime/magic') ) ;
+    my @done;
+    for my $file (@magicfiles) {
+        next if grep {$file eq $_} @done;
+        _hash_magic($file);
+        push @done, $file;
+    }
+    @magic = sort {$$b[0] <=> $$a[0]} @magic;
+    while ($magic[0][0] >= 80) {
+        push @magic_80, shift @magic;
+    }
+    $_hashed = 1;
 }
 
 sub _hash_magic {
-	my $file = shift;
+    my $file = shift;
 
-	open MAGIC, '<', $file
-		|| croak "Could not open file '$file' for reading";
-	binmode MAGIC;
-	<MAGIC> eq "MIME-Magic\x00\n"
-		or carp "Magic file '$file' doesn't seem to be a magic file";
-	my $line = 1;
-	while (<MAGIC>) {
-		$line++;
+    open MAGIC, '<', $file
+        || croak "Could not open file '$file' for reading";
+    binmode MAGIC;
+    <MAGIC> eq "MIME-Magic\x00\n"
+        or carp "Magic file '$file' doesn't seem to be a magic file";
+    my $line = 1;
+    while (<MAGIC>) {
+        $line++;
 
-		if (/^\[(\d+):(.*?)\]\n$/) {
-			push @magic, [$1,$2];
-			next;
-		}
+        if (/^\[(\d+):(.*?)\]\n$/) {
+            push @magic, [$1,$2];
+            next;
+        }
 
-		s/^(\d*)>(\d+)=(.{2})//s
-			|| warn "$file line $line skipped\n" && next;
-		my ($i, $o, $l) = ($1, $2, unpack 'n', $3);
-		                  # indent, offset, value length
-		while (length($_) <= $l) {
-			$_ .= <MAGIC>;
-			$line++;
-		}
+        s/^(\d*)>(\d+)=(.{2})//s
+            || warn "$file line $line skipped\n" && next;
+        my ($i, $o, $l) = ($1, $2, unpack 'n', $3);
+                        # indent, offset, value length
+        while (length($_) <= $l) {
+            $_ .= <MAGIC>;
+            $line++;
+        }
 
-		my $v = substr $_, 0, $l, ''; # value
+        my $v = substr $_, 0, $l, ''; # value
 
-		/^(?:&(.{$l}))?(?:~(\d+))?(?:\+(\d+))?\n$/s
-			|| warn "$file line $line skipped\n" && next;
-		my ($m, $w, $r) = ($1, $2 || 1, $3 || 1);
-		                  # mask, word size, range
-		my $mdef = defined $m;
+        /^(?:&(.{$l}))?(?:~(\d+))?(?:\+(\d+))?\n$/s
+            || warn "$file line $line skipped\n" && next;
+        my ($m, $w, $r) = ($1, $2 || 1, $3 || 1);
+                        # mask, word size, range
+        my $mdef = defined $m;
 
-		# possible big endian to little endian conversion
-		# as a bonus perl also takes care of weird endian cases
-		if ( $w != 1 ) {
-			my ( $utpl, $ptpl );
-			if ( 2 == $w ) {
-				$v = pack 'S', unpack 'n', $v;
-				$m = pack 'S', unpack 'n', $m if $mdef;
-			}
-			elsif ( 4 == $w ) {
-				$v = pack 'L', unpack 'N', $v;
-				$m = pack 'L', unpack 'N', $m if $mdef;
-			}
-			else {
-				warn "Unsupported word size: $w octets ".
-				     " at $file line $line\n"
-			}
-		}
+        # possible big endian to little endian conversion
+        # as a bonus perl also takes care of weird endian cases
+        if ( $w != 1 ) {
+            my ( $utpl, $ptpl );
+            if ( 2 == $w ) {
+                $v = pack 'S', unpack 'n', $v;
+                $m = pack 'S', unpack 'n', $m if $mdef;
+            }
+            elsif ( 4 == $w ) {
+                $v = pack 'L', unpack 'N', $v;
+                $m = pack 'L', unpack 'N', $m if $mdef;
+            }
+            else {
+                warn "Unsupported word size: $w octets ".
+                    " at $file line $line\n"
+            }
+        }
 
-		my $end = $o + $l + $r - 1;
-		$max_buffer = $end if $max_buffer < $end;
-		my $ref = $i ? _find_branch($i) : $magic[-1];
-		$r--;             # 1-based => 0-based range for regex
-		$r *= 8 if $mdef; # bytes => bits for matching a mask
-		my $reg = '^'
-			. ( $r    ? "(.{0,$r}?)" : '()'           )
-			. ( $mdef ? '('. _mask_regex($v, $m) .')'
-			          : '('. quotemeta($v)       .')' ) ;
-		push @$ref, [
-			$o, $end,    # offset, offset+length+range
-			$mdef,       # boolean for mask
-			qr/$reg/sm,  # the regex to match
-			undef	     # debug data
-		];
-		$$ref[-1][-1] = "$file line $line" if $DEBUG;
-	}
-	close MAGIC;
+        my $end = $o + $l + $r - 1;
+        $max_buffer = $end if $max_buffer < $end;
+        my $ref = $i ? _find_branch($i) : $magic[-1];
+        $r--;             # 1-based => 0-based range for regex
+        $r *= 8 if $mdef; # bytes => bits for matching a mask
+        my $reg = '^'
+            . ( $r    ? "(.{0,$r}?)" : '()'           )
+            . ( $mdef ? '('. _mask_regex($v, $m) .')'
+                    : '('. quotemeta($v)       .')' ) ;
+        push @$ref, [
+            $o, $end,    # offset, offset+length+range
+            $mdef,       # boolean for mask
+            qr/$reg/sm,  # the regex to match
+            undef	     # debug data
+        ];
+        $$ref[-1][-1] = "$file line $line" if $DEBUG;
+    }
+    close MAGIC;
 }
 
 sub _find_branch { # finds last branch of tree of rules
-	my $i = shift;
-	my $ref = $magic[-1];
-	for (1..$i) { $ref = $$ref[-1] }
-	return $ref;
+    my $i = shift;
+    my $ref = $magic[-1];
+    for (1..$i) { $ref = $$ref[-1] }
+    return $ref;
 }
 
 sub _mask_regex { # build regex based on mask
-	my ($v, $m) = @_;
-	my @v = split '', unpack "b*", $v;
-	my @m = split '', unpack "b*", $m;
-	my $re = '';
-	for (0 .. $#m) {
-		$re .= $m[$_] ? $v[$_] : '.' ;
-		# If $mask = 1 than ($input && $mask) will be same as $input
-		# If $mask = 0 than ($input && $mask) is always 0
-		# But $mask = 0 only makes sense if $value = 0
-		# So if $mask = 0 we ignore that bit of $input
-	}
-	return $re;
+    my ($v, $m) = @_;
+    my @v = split '', unpack "b*", $v;
+    my @m = split '', unpack "b*", $m;
+    my $re = '';
+    for (0 .. $#m) {
+        $re .= $m[$_] ? $v[$_] : '.' ;
+        # If $mask = 1 than ($input && $mask) will be same as $input
+        # If $mask = 0 than ($input && $mask) is always 0
+        # But $mask = 0 only makes sense if $value = 0
+        # So if $mask = 0 we ignore that bit of $input
+    }
+    return $re;
 }
 
 sub _escape_bytes { # used for debug output
-	my $string = shift;
-	if ($string =~ /[\x00-\x1F\x7F]/) {
-		$string = join '', map {
-			my $o = ord($_);
-			($o < 32)   ? '^' . chr($o + 64) :
-			($o == 127) ? '^?'               : $_ ;
-		} split '', $string;
-	}
-	return $string;
+    my $string = shift;
+    if ($string =~ /[\x00-\x1F\x7F]/) {
+        $string = join '', map {
+            my $o = ord($_);
+            ($o < 32)   ? '^' . chr($o + 64) :
+            ($o == 127) ? '^?'               : $_ ;
+        } split '', $string;
+    }
+    return $string;
 }
 
 1;
@@ -257,8 +257,8 @@ File::MimeInfo::Magic - Determine file type with magic
 
 =head1 SYNOPSIS
 
-	use File::MimeInfo::Magic;
-	my $mime_type = mimetype($file);
+    use File::MimeInfo::Magic;
+    my $mime_type = mimetype($file);
 
 =head1 DESCRIPTION
 

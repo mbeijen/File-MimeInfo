@@ -10,10 +10,10 @@ use_ok('File::MimeInfo', qw/mimetype describe globs/); # 1
 
 # test what was read
 {
-	no warnings; # don't bug me because I use these vars only once
-	File::MimeInfo::rehash();
-	ok(scalar(keys %File::MimeInfo::literal) == 1, 'literal data is there');	# 2
-	ok(scalar(@File::MimeInfo::globs) == 1, 'globs data is there');			# 3
+    no warnings; # don't bug me because I use these vars only once
+    File::MimeInfo::rehash();
+    ok(scalar(keys %File::MimeInfo::literal) == 1, 'literal data is there');	# 2
+    ok(scalar(@File::MimeInfo::globs) == 1, 'globs data is there');			# 3
 }
 
 # test _glob_to_regexp
@@ -39,17 +39,17 @@ for my $glob (
 # test parsing file names
 $i = 0;
 for (
-	['script.pl', 'application/x-perl'],		# 8
-	['script.old.pl', 'application/x-perl'],	# 9
-	['script.PL', 'application/x-perl'],		# 10 - case insensitive use of glob
-	['script.tar.pl', 'application/x-perl'],	# 11
-	['script.gz', 'application/x-gzip'],		# 12
-	['script.tar.gz', 'application/x-compressed-tar'],	# 13
-	['INSTALL', 'text/x-install'],			# 14
-	['script.foo.bar.gz', 'application/x-gzip'],	# 15
-	['script.foo.tar.gz', 'application/x-compressed-tar'],	# 16
-	['makefile', 'text/x-makefile'],		# 17
-	['./makefile', 'text/x-makefile'],		# 18
+    ['script.pl', 'application/x-perl'],		# 8
+    ['script.old.pl', 'application/x-perl'],	# 9
+    ['script.PL', 'application/x-perl'],		# 10 - case insensitive use of glob
+    ['script.tar.pl', 'application/x-perl'],	# 11
+    ['script.gz', 'application/x-gzip'],		# 12
+    ['script.tar.gz', 'application/x-compressed-tar'],	# 13
+    ['INSTALL', 'text/x-install'],			# 14
+    ['script.foo.bar.gz', 'application/x-gzip'],	# 15
+    ['script.foo.tar.gz', 'application/x-compressed-tar'],	# 16
+    ['makefile', 'text/x-makefile'],		# 17
+    ['./makefile', 'text/x-makefile'],		# 18
 ) { is( mimetype($_->[0]), $_->[1], 'file '.++$i ) }
 
 # test OO interface
@@ -69,19 +69,19 @@ is( mimetype('t/default/encoding_breakage'), 'application/octet-stream', 'encodi
 is( mimetype('t'), 'inode/directory', 'directories are recognized'); # 27
 
 SKIP: {
-	unlink 't/symlink' or die "Could not unlink t/symlink"
-		if -l 't/symlink';
-	skip('symlink not supported', 1)
-		unless eval { symlink("",""); 1 }
-		and symlink('t/default' => 't/symlink') ;
-	is( mimetype('t/symlink'), 'inode/symlink', 'symlinks are recognized'); # 28
+    unlink 't/symlink' or die "Could not unlink t/symlink"
+        if -l 't/symlink';
+    skip('symlink not supported', 1)
+        unless eval { symlink("",""); 1 }
+        and symlink('t/default' => 't/symlink') ;
+    is( mimetype('t/symlink'), 'inode/symlink', 'symlinks are recognized'); # 28
 }
 
 # test describe
 ok( describe('text/plain') eq 'Plain Text', 'describe works' ); # 29
 {
-	no warnings; # don't bug me because I use this var only once
-	$File::MimeInfo::LANG = 'nl';
+    no warnings; # don't bug me because I use this var only once
+    $File::MimeInfo::LANG = 'nl';
 }
 ok( describe('text/plain') eq 'Platte tekst', 'describe works with other languages' ); # 30
 

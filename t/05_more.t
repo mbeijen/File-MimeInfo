@@ -13,9 +13,9 @@ ok( extensions('text/plain') eq 'asc', 'extenions works'); # 2
 is_deeply( [extensions('text/plain')], [qw#asc txt#], 'wantarray extensions works' ); # 3
 
 {
-	# call above should have triggered rehash()
-	no warnings; # don't bug me because I use these vars only once
-	is(scalar(keys %File::MimeInfo::extension), 7, 'extension data is there');    # 4
+    # call above should have triggered rehash()
+    no warnings; # don't bug me because I use these vars only once
+    is(scalar(keys %File::MimeInfo::extension), 7, 'extension data is there');    # 4
 }
 
 ## test alias lookup
@@ -32,31 +32,30 @@ is_deeply([mimetype_isa('application/x-perl')], [qw(application/x-executable tex
 
 ## Tests for Applications
 SKIP: {
-	eval { require File::DesktopEntry };
-	skip "File::DesktopEntry not installed", 3 if $@;
+    eval { require File::DesktopEntry };
+    skip "File::DesktopEntry not installed", 3 if $@;
 
-	use_ok('File::MimeInfo::Applications');
+    use_ok('File::MimeInfo::Applications');
 
 
-	my %list = (
-		'text/plain'    => 'foo.desktop',
-		'image/svg+xml' => 'mirage.desktop',
-	);
+    my %list = (
+        'text/plain'    => 'foo.desktop',
+        'image/svg+xml' => 'mirage.desktop',
+    );
 
-	for my $type (keys %list) {
+    for my $type (keys %list) {
 
-	my ($default, @other) = mime_applications($type);
-	ok (
-		!defined($default)	&&
-		(@other == 1)		&&
-		ref($other[0]) eq 'File::DesktopEntry',
-		'mime_application() works'
-	);
-	is (
-		$other[0]->{file},
-		File::Spec->catfile('t', 'applications', $list{$type}),
-		"desktop file is the right one",
-	);
-	}
+    my ($default, @other) = mime_applications($type);
+    ok (
+        !defined($default)	&&
+        (@other == 1)		&&
+        ref($other[0]) eq 'File::DesktopEntry',
+        'mime_application() works'
+    );
+    is (
+        $other[0]->{file},
+        File::Spec->catfile('t', 'applications', $list{$type}),
+        "desktop file is the right one",
+    );
+    }
 }
-
