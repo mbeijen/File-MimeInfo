@@ -1,6 +1,7 @@
 package File::MimeInfo::Rox;
 
 use strict;
+use warnings;
 use Carp;
 use File::BaseDir qw/config_home data_dirs/;
 use File::Spec;

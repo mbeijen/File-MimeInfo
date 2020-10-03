@@ -1,4 +1,5 @@
 use strict;
+use warnings;
 use File::Spec;
 use Test::More;
 
@@ -12,9 +13,9 @@ use_ok('File::MimeInfo', qw/extensions mimetype_canon mimetype_isa/);
 ok( extensions('text/plain') eq 'asc', 'extenions works');
 is_deeply( [extensions('text/plain')], [qw#asc txt#], 'wantarray extensions works' );
 
+# call above should have triggered rehash()
 {
-    # call above should have triggered rehash()
-    no warnings; # don't bug me because I use these vars only once
+    no warnings 'once';
     is(scalar(keys %File::MimeInfo::extension), 7, 'extension data is there');
 }
 

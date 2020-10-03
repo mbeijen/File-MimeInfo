@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
+use warnings;
 our $VERSION = '0.29_02';
 $|++;
 
@@ -87,7 +88,10 @@ complain(undef, 4) unless scalar(@ARGV);
 # ############# #
 
 # --database
-@File::MimeInfo::DIRS = split /:/, $args{database} if $args{database};
+{
+    no warnings 'once';
+    @File::MimeInfo::DIRS = split /:/, $args{database} if $args{database};
+}
 
 ## Actually use our modules ##
 eval 'use File::MimeInfo::Magic qw/mimetype magic/;';
@@ -95,12 +99,16 @@ die $@ if $@;
 eval 'use File::MimeInfo::Applications;';
 die $@ if $@;
 
+
 *default = \&File::MimeInfo::default;
 
 # --debug
 if ($args{debug}) {
-    $File::MimeInfo::DEBUG++;
-    $File::MimeInfo::Magic::DEBUG++;
+    {
+        no warnings 'once';
+        $File::MimeInfo::DEBUG++;
+        $File::MimeInfo::Magic::DEBUG++;
+    }
     print '> Data dirs are: ', join( ', ',
             $args{database}
                 ? ( split /:/, $args{database} )

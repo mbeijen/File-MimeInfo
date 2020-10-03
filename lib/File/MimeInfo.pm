@@ -1,6 +1,7 @@
 package File::MimeInfo;
 
 use strict;
+use warnings;
 use Carp;
 use Fcntl 'SEEK_SET';
 use File::Spec;

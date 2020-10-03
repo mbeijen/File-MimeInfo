@@ -1,6 +1,7 @@
 package File::MimeInfo::Applications;
 
 use strict;
+use warnings;
 use Carp;
 use File::Spec;
 use File::BaseDir qw/config_home config_dirs data_home data_dirs data_files/;
@@ -91,10 +92,10 @@ sub _default {
     my $legacy     = data_home(qw/applications defaults.list/);
 
     unless ( ( -f $user
-        || -f $system
-        || -f $deprecated
-        || -f $distro
-        || -f $legacy )
+        || ($system && -f $system)
+        || ($deprecated && -f $deprecated)
+        || ($distro && -f $distro)
+        || ($legacy && -f $legacy) )
         && -r _ ) {
         return undef;
     }

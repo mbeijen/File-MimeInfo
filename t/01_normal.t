@@ -1,5 +1,5 @@
-
 use strict;
+use warnings;
 
 use Test::More;
 
@@ -9,9 +9,9 @@ $ENV{XDG_DATA_DIRS} = './t/'; # forceing non default value
 use_ok('File::MimeInfo', qw/mimetype describe globs/);
 
 # test what was read
+File::MimeInfo::rehash();
 {
-    no warnings; # don't bug me because I use these vars only once
-    File::MimeInfo::rehash();
+    no warnings 'once';
     ok(scalar(keys %File::MimeInfo::literal) == 1, 'literal data is there');
     ok(scalar(@File::MimeInfo::globs) == 1, 'globs data is there');
 }
@@ -80,10 +80,10 @@ SKIP: {
 # test describe
 ok( describe('text/plain') eq 'Plain Text', 'describe works' );
 {
-    no warnings; # don't bug me because I use this var only once
+    no warnings 'once';
     $File::MimeInfo::LANG = 'nl';
+    ok( describe('text/plain') eq 'Platte tekst', 'describe works with other languages' );
 }
-ok( describe('text/plain') eq 'Platte tekst', 'describe works with other languages' );
 
 is( mimetype('t/test.png'), 'image/png', 'glob priority observed');
 

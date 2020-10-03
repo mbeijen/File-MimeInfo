@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
+use warnings;
 our $VERSION = '0.29_02';
 $|++;
 
@@ -99,7 +100,10 @@ complain(undef, 4) unless scalar(@ARGV) || $args{stdin} || $args{namefile};
 our %desc; # desc caching hash
 
 # --database
-@File::MimeInfo::DIRS = split /:/, $args{database} if $args{database};
+{
+    no warnings 'once';
+    @File::MimeInfo::DIRS = split /:/, $args{database} if $args{database};
+}
 
 ## Actually use our module ##
 eval 'use File::MimeInfo::Magic qw/mimetype globs inodetype magic describe/;';
@@ -109,8 +113,11 @@ die $@ if $@;
 
 # --debug
 if ($args{debug}) {
-    $File::MimeInfo::DEBUG++;
-    $File::MimeInfo::Magic::DEBUG++;
+    {
+        no warnings 'once';
+        $File::MimeInfo::DEBUG++;
+        $File::MimeInfo::Magic::DEBUG++;
+    }
     print '> Data dirs are: ', join( ', ',
             $args{database}
                 ? ( split /:/, $args{database} )
@@ -133,7 +140,10 @@ if ($args{namefile}) {
 }
 
 # --language
-$File::MimeInfo::LANG = $args{language} if $args{language};
+{
+    no warnings 'once';
+    $File::MimeInfo::LANG = $args{language} if $args{language};
+}
 
 # Formatting stuff
 my $l = 5; # "STDIN"
@@ -169,7 +179,10 @@ if ($args{stdin}) {
 # --stdin
 if ($args{stdin}) {
     my $data;
-    read(STDIN, $data, $File::MimeInfo::Magic::max_buffer);
+    {
+        no warnings 'once';
+        read(STDIN, $data, $File::MimeInfo::Magic::max_buffer);
+    }
     my $scalar = new IO::Scalar \$data;
     print $format->('STDIN', mimetype($scalar)), "\n";
     exit;
