@@ -49,13 +49,14 @@ sub pmver {
 }
 
 eval { $v .= pmver('Carp','any version') };
+eval { $v .= pmver('Encode::Locale','any version') };
 eval { $v .= pmver('Exporter','any version') };
 eval { $v .= pmver('Fcntl','any version') };
-eval { $v .= pmver('Pod::Usage','any version') };
 eval { $v .= pmver('File::Spec','0.03') };
 eval { $v .= pmver('File::DesktopEntry','0.04') };
-eval { $v .= pmver('Test::More','0.88') };
 eval { $v .= pmver('Path::Tiny','any version') };
+eval { $v .= pmver('Pod::Usage','any version') };
+eval { $v .= pmver('Test::More','0.88') };
 
 
 # All done.
