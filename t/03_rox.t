@@ -1,5 +1,5 @@
 
-use Test::More tests => 2;
+use Test::More;
 
 $ENV{XDG_DATA_HOME} = './t/';
 $ENV{XDG_DATA_DIRS} = './t/'; # forceing non default value
@@ -14,3 +14,4 @@ is_deeply(
     'suggest_script_name works' );
 
 # dunno what more to test :S
+done_testing;

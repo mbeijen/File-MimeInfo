@@ -1,33 +1,33 @@
 use strict;
 use File::Spec;
-use Test::More tests => 16;
+use Test::More;
 
 $ENV{XDG_DATA_HOME} = './t/';
 $ENV{XDG_DATA_DIRS} = './t/'; # forceing non default value
 
-use_ok('File::MimeInfo', qw/extensions mimetype_canon mimetype_isa/); # 1
+use_ok('File::MimeInfo', qw/extensions mimetype_canon mimetype_isa/);
 
 ## test reverse extension lookup
 
-ok( extensions('text/plain') eq 'asc', 'extenions works'); # 2
-is_deeply( [extensions('text/plain')], [qw#asc txt#], 'wantarray extensions works' ); # 3
+ok( extensions('text/plain') eq 'asc', 'extenions works');
+is_deeply( [extensions('text/plain')], [qw#asc txt#], 'wantarray extensions works' );
 
 {
     # call above should have triggered rehash()
     no warnings; # don't bug me because I use these vars only once
-    is(scalar(keys %File::MimeInfo::extension), 7, 'extension data is there');    # 4
+    is(scalar(keys %File::MimeInfo::extension), 7, 'extension data is there');
 }
 
 ## test alias lookup
-ok(mimetype_canon('text/plain') eq 'text/plain', 'canon is transparent'); # 5
-ok(mimetype_canon('application/x-pdf') eq 'application/pdf', 'canon works'); # 6
+ok(mimetype_canon('text/plain') eq 'text/plain', 'canon is transparent');
+ok(mimetype_canon('application/x-pdf') eq 'application/pdf', 'canon works');
 
 ## test subclass lookup
-ok(mimetype_isa('text/foo', 'text/plain'), 'implicite text/plain subclass'); # 7
-is_deeply([mimetype_isa('text/foo')], [qw(text/plain application/octet-stream)], 'implite application/octet-stream subclass'); # 8
-ok(mimetype_isa('inode/mount-point', 'inode/directory'), 'implicte inode/directory subclass'); # 9
-ok(mimetype_isa('application/x-perl', 'application/x-executable'), 'subclass form file'); # 10
-is_deeply([mimetype_isa('application/x-perl')], [qw(application/x-executable text/plain application/octet-stream)], 'subclass list from file'); # 11
+ok(mimetype_isa('text/foo', 'text/plain'), 'implicite text/plain subclass');
+is_deeply([mimetype_isa('text/foo')], [qw(text/plain application/octet-stream)], 'implite application/octet-stream subclass');
+ok(mimetype_isa('inode/mount-point', 'inode/directory'), 'implicte inode/directory subclass');
+ok(mimetype_isa('application/x-perl', 'application/x-executable'), 'subclass form file');
+is_deeply([mimetype_isa('application/x-perl')], [qw(application/x-executable text/plain application/octet-stream)], 'subclass list from file');
 
 
 ## Tests for Applications
@@ -47,8 +47,8 @@ SKIP: {
 
     my ($default, @other) = mime_applications($type);
     ok (
-        !defined($default)	&&
-        (@other == 1)		&&
+        !defined($default)  &&
+        (@other == 1)       &&
         ref($other[0]) eq 'File::DesktopEntry',
         'mime_application() works'
     );
@@ -59,3 +59,4 @@ SKIP: {
     );
     }
 }
+done_testing;
