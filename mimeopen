@@ -13,18 +13,17 @@ use Encode;
 
 my %args = ();
 my %opts = (
-    # name	=> [char, expect_arg_bit ]
-    'help'		=> ['h'],
-    'usage'		=> ['u'],
-    'version'	=> ['v'],
-    'stdin'		=> [''],
-    'dereference'	=> ['L'],
-    'debug'		=> ['D'],
-    'database'	=> ['', 1],
-    'magic-only'	=> ['M'],
-    'ask'		=> ['a'],
-    'ask-default'	=> ['d'],
-    'no-ask'	=> ['n'],
+    'help'        => ['h'],
+    'usage'       => ['u'],
+    'version'     => ['v'],
+    'stdin'       => [''],
+    'dereference' => ['L'],
+    'debug'       => ['D'],
+    'database'    => ['', 1],
+    'magic-only'  => ['M'],
+    'ask'         => ['a'],
+    'ask-default' => ['d'],
+    'no-ask'      => ['n'],
 );
 
 while ((@ARGV) && ($ARGV[0] =~ /^-/)) {
@@ -102,7 +101,7 @@ die $@ if $@;
 if ($args{debug}) {
     $File::MimeInfo::DEBUG++;
     $File::MimeInfo::Magic::DEBUG++;
-    print	'> Data dirs are: ', join( ', ',
+    print '> Data dirs are: ', join( ', ',
             $args{database}
                 ? ( split /:/, $args{database} )
                 : (

@@ -13,25 +13,24 @@ use Encode;
 
 my %args = ();
 my %opts = (
-    # name	=> [char, expect_arg_bit ]
-    'help'		=> ['h'],
-    'usage'		=> ['u'],
-    'version'	=> ['v'],
-    'stdin'		=> [''],
-    'brief'		=> ['b'],
-    'namefile'	=> ['f', 1],
-    'noalign'	=> ['N'],
-    'describe'	=> ['d'],
-    'file-compat'	=> [''],
-    'output-format'	=> ['', 1],
-    'language'	=> ['l', 1],
-    'mimetype'	=> ['i'],
-    'dereference'	=> ['L'],
-    'separator'	=> ['F',1],
-    'debug'		=> ['D'],
-    'database'	=> ['', 1],
-    'all'		=> ['a'],
-    'magic-only'	=> ['M'],
+    'help'          => ['h'],
+    'usage'         => ['u'],
+    'version'       => ['v'],
+    'stdin'         => [''],
+    'brief'         => ['b'],
+    'namefile'      => ['f', 1],
+    'noalign'       => ['N'],
+    'describe'      => ['d'],
+    'file-compat'   => [''],
+    'output-format' => ['', 1],
+    'language'      => ['l', 1],
+    'mimetype'      => ['i'],
+    'dereference'   => ['L'],
+    'separator'     => ['F',1],
+    'debug'         => ['D'],
+    'database'      => ['', 1],
+    'all'           => ['a'],
+    'magic-only'    => ['M'],
 );
 
 $args{'file-compat'}++ if $0 =~ m#(^|/)file$#;
@@ -112,7 +111,7 @@ die $@ if $@;
 if ($args{debug}) {
     $File::MimeInfo::DEBUG++;
     $File::MimeInfo::Magic::DEBUG++;
-    print	'> Data dirs are: ', join( ', ',
+    print '> Data dirs are: ', join( ', ',
             $args{database}
                 ? ( split /:/, $args{database} )
                 : (
