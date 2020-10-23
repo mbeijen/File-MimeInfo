@@ -2,6 +2,12 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <michiel.beijen@gmail.com>
 
+0.29.03  2020-10-23
+ - Added function File::MimeInfo::has_mimeinfo_database() to test if
+    mimeinfo database is found
+ - mimetype and mimeopen now exit with an error code if no mimeinfo database
+    is found
+
 0.29_02  2020-10-01
  - Added explicit dependency on Encode::Locale
 

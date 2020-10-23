@@ -14,7 +14,7 @@ our @EXPORT_OK = qw(extensions describe globs inodetype mimetype_canon mimetype_
 our $VERSION = '0.29_02';
 our $DEBUG;
 
-our ($_hashed, $_hashed_aliases, $_hashed_subclasses);
+our ($_hashed, $_hashed_aliases, $_hashed_subclasses, $_has_mimeinfo_database);
 our (@globs, %literal, %extension, %mime2ext, %aliases, %subclasses);
 our ($LANG, @DIRS);
 # @globs = [ [ 'glob', qr//, $mime_string ], ... ]
@@ -76,7 +76,7 @@ sub globs {
         while (@ext) {
             my $ext = join('.', @ext);
             print STDERR "> Checking for extension '.$ext'\n" if $DEBUG;
-            warn "WARNING: wantarray behaviour of globs() will change in the future.\n" if wantarray;
+            carp "WARNING: wantarray behaviour of globs() will change in the future.\n" if wantarray;
             return wantarray
                 ? ($extension{$ext}, $ext)
                 : $extension{$ext}
@@ -148,10 +148,12 @@ sub rehash {
     my @globfiles = @DIRS
         ? ( grep {-e $_ && -r $_} map "$_/globs", @DIRS )
         : ( reverse data_files('mime/globs')        );
-    print STDERR << 'EOT' unless @globfiles;
-WARNING: You don't seem to have a mime-info database. The
-shared-mime-info package is available from http://freedesktop.org/ .
-EOT
+    if (@globfiles) {
+        $_has_mimeinfo_database = 1;
+    } else {
+        carp "WARNING: You don't seem to have a mime-info database. " .
+             "The shared-mime-info package is available from http://freedesktop.org/";
+    }
     my @done;
     for my $file (@globfiles) {
         next if grep {$file eq $_} @done;
@@ -160,8 +162,6 @@ EOT
     }
     $_hashed = 1;
 }
-
-
 
 sub _hash_globs {
     my $file = shift;
@@ -188,6 +188,11 @@ sub _glob_to_regexp {
     $glob =~ s/([?*])/.$1/g;
     $glob =~ s/([^\w\/\\\.\?\*\[\]])/\\$1/g;
     qr/^$glob$/;
+}
+
+sub has_mimeinfo_database {
+    rehash() if (!$_hashed);
+    return $_has_mimeinfo_database;
 }
 
 sub extensions {
@@ -411,6 +416,15 @@ the first one.
 
 This method checks the subclasses table and applies a few rules for implicit
 subclasses.
+
+=item C<has_mimeinfo_database()>
+
+Check if there are mimeinfo database files available; returns 1 on success.
+If you don't have the shared-mime-info package installed or not in the PATH or
+C<@File::MimeInfo::DIRS> does not contain database directories, you will not get
+the successful reply.
+
+New in version 0.30.
 
 =item C<rehash()>
 

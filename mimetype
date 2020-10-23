@@ -172,6 +172,10 @@ if ($args{stdin}) {
     die "Could not find perl module IO::Scalar\n" if $@;
 }
 
+if (!File::MimeInfo::has_mimeinfo_database()) {
+    die "No mimeinfo database found\n";
+}
+
 # ######## #
 # do stuff #
 # ######## #
@@ -202,7 +206,9 @@ foreach my $file (@ARGV) {
             print $format->($file, $m), "\n" if $m;
         }
     }
-    else { print $format->($file, mimetype($f)), "\n" }
+    else {
+        print $format->($file, mimetype($f)), "\n"
+    }
 }
 
 exit;

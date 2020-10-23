@@ -126,6 +126,10 @@ if ($args{dereference}) {
     die "Could not find perl module File::Spec\n" if $@;
 }
 
+if (!File::MimeInfo::has_mimeinfo_database()) {
+    die "No mimeinfo database found\n";
+}
+
 # ######## #
 # do stuff #
 # ######## #
