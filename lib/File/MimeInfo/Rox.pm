@@ -11,7 +11,7 @@ our @ISA = qw(Exporter);
 our @EXPORT = qw(mime_exec mime_system);
 our @EXPORT_OK = qw(suggest_script_name);
 our %EXPORT_TAGS = (magic => \@EXPORT);
-our $VERSION = '0.29_02';
+our $VERSION = '0.29_03';
 our @choicespath = (
     config_home('rox.sourceforge.net'),
     File::Spec->catdir($ENV{HOME}, 'Choices'),
