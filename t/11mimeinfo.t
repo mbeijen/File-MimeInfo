@@ -2,7 +2,6 @@ use strict;
 use warnings;
 
 use Test::More;
-
 use File::MimeInfo;
 use File::Spec;
 use File::Temp;
@@ -34,7 +33,7 @@ for my $test (sort keys %tests) {
             "$test (stdin)");
     };
     # with empty mimetype dirs, should exit non-zero
-    `$^X $mimetype_file --directory "$empty_dir" --noalign $test`;
+    `$^X $mimetype_file --database "$empty_dir" --noalign $test`;
     cmp_ok($?, '>', 0);
 }
 
