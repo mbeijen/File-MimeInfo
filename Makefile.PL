@@ -13,7 +13,7 @@ WriteMakefile (
   'VERSION_FROM'     => 'lib/File/MimeInfo.pm',
   'LICENSE'          => 'perl',
   'MIN_PERL_VERSION' => '5.6.1',
-  'BUILD_REQUIRES'   => {
+  'PREREQ_PM'        => {
     'Carp'               => 0,
     'Exporter'           => 0,
     'Encode::Locale'     => 0,
