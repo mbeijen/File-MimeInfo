@@ -2,6 +2,9 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <mb@x14.nl>
 
+0.31  2022-01-06
+ - Change BUILD_REQUIRES to PREREQ_PM (BooK)
+
 0.30  2020-10-26
  - Added function File::MimeInfo::has_mimeinfo_database() to test if
     mimeinfo database is found

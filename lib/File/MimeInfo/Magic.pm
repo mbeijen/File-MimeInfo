@@ -17,7 +17,7 @@ BEGIN {
 our @ISA = qw(Exporter File::MimeInfo);
 our @EXPORT = qw(mimetype);
 our @EXPORT_OK = qw(extensions describe globs inodetype magic);
-our $VERSION = '0.30';
+our $VERSION = '0.31';
 our $DEBUG;
 
 our $_hashed = 0;
