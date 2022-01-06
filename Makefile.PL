@@ -52,7 +52,7 @@ WriteMakefile (
         'Jitka Plesnikova <jplesnik@redhat.com>',
         'Jonathan Dowland <jmtd@debian.org>',
         'Martin Vassor <martin.vassor@alumni.epfl.ch>',
-        'Michiel Beijen <michiel.beijen@gmail.com>',
+        'Michiel Beijen <mb@x14.nl>',
         'Nikos Skalkotos <skalkoto@grnet.gr>',
         'Nitish Bezzala <nbezzala@yahoo.com>',
         'Oleg Kostyuk <cub.uanic@gmail.com>',

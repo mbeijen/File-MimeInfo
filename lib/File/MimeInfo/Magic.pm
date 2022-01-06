@@ -343,7 +343,7 @@ and will cause a warning.
 =head1 AUTHOR
 
 Jaap Karssenberg E<lt>pardus@cpan.orgE<gt>
-Maintained by Michiel Beijen E<lt>michiel.beijen@gmail.comE<gt>
+Maintained by Michiel Beijen E<lt>mb@x14.nlE<gt>
 
 =head1 COPYRIGHT
 
