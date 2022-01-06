@@ -57,6 +57,7 @@ WriteMakefile (
         'Nitish Bezzala <nbezzala@yahoo.com>',
         'Oleg Kostyuk <cub.uanic@gmail.com>',
         'Patrick Burroughs (Celti) <celti@celti.name>',
+        'Philippe Bruhat (BooK) <book@cpan.org>',
         'Rudolf Leermakers <rudolf@hatsuseno.org>',
         'Sean Smith <ssmith@ncsgraphics.com>',
         'Stefan Seifert <nine@detonation.org>',
