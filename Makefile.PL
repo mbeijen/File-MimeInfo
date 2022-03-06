@@ -63,6 +63,7 @@ WriteMakefile (
         'Stefan Seifert <nine@detonation.org>',
         'brian m. carlson <sandals@crustytoothpaste.net>',
         'gregor herrmann <gregoa@debian.org>',
+        'mazunki <rolferen@gmail.com>',
     ],
   },
 );
