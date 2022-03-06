@@ -2,6 +2,9 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <mb@x14.nl>
 
+0.32  2022-03-06
+ - Fix uninitialized values in _read_list() call, provided by mazunki
+
 0.31  2022-01-06
  - Change BUILD_REQUIRES to PREREQ_PM (BooK)
 
