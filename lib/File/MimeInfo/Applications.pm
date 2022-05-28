@@ -178,7 +178,7 @@ sub _write_list {
 }
 
 sub _find_file {
-    my @list = shift;
+    my @list = @_;
     for (@list) {
         my $file = data_files('applications', $_);
         return File::DesktopEntry->new($file) if $file;
