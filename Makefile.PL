@@ -59,6 +59,7 @@ WriteMakefile (
         'Patrick Burroughs (Celti) <celti@celti.name>',
         'Philippe Bruhat (BooK) <book@cpan.org>',
         'Rudolf Leermakers <rudolf@hatsuseno.org>',
+        'SPFabGerman <42518661+SPFabGerman@users.noreply.github.com>',
         'Sean Smith <ssmith@ncsgraphics.com>',
         'Stefan Seifert <nine@detonation.org>',
         'brian m. carlson <sandals@crustytoothpaste.net>',
