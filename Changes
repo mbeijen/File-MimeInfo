@@ -2,6 +2,10 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <mb@x14.nl>
 
+0.33  2022-07-12
+ - Fix uninitialized value warning in File::MimeInfo::Applications,
+   provided by SPFabGerman
+
 0.32  2022-03-06
  - Fix uninitialized values in _read_list() call, provided by mazunki
 
