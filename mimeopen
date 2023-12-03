@@ -174,12 +174,12 @@ print 'Opening '.join(', ', map qq{"$_"}, @ARGV)
     . ' with '.$default->get_value('Name')."  ($mimetype)\n";
 #print STDERR "exec string: ".$default->parse_Exec(@ARGV)."\n";
 if (@ARGV == 1 or $default->wants_list) {
-    $default->exec(@ARGV);
+    $default->run(@ARGV);
 }
 else {
     my $last = pop @ARGV;
     fork or $default->exec($_) for @ARGV;
-    $default->exec($last);
+    $default->run($last);
 }
 
 exit 7; # something went wrong in the exec
