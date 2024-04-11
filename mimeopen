@@ -182,7 +182,8 @@ else {
     $default->run($last);
 }
 
-exit 7; # something went wrong in the exec
+# run() will fork and fall through to here, don't do anything after that except for exiting with a sucess code
+exit 0;
 
 # ########### #
 # Subroutines #
