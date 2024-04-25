@@ -2,6 +2,11 @@ Revision history for Perl extension File::MimeInfo.
 Versions up to 0.15 by Jaap Karssenberg <pardus@cpan.org>
 Versions starting 0.16 by Michiel Beijen <mb@x14.nl>
 
+0.35  2024-04-25
+ - Fix exit code issue for `mimeopen`
+    Closes https://github.com/mbeijen/File-MimeInfo/issues/54
+    fix provided by slatian
+
 0.34  2023-12-03
  - Let `mimeopen` use File::DesktopEntrys run() instead of exec() to
    make sure the application is started in the background.
