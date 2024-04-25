@@ -61,6 +61,7 @@ WriteMakefile (
         'Rudolf Leermakers <rudolf@hatsuseno.org>',
         'SPFabGerman <42518661+SPFabGerman@users.noreply.github.com>',
         'Sean Smith <ssmith@ncsgraphics.com>',
+        'Slatian <baschdel@disroot.org>',
         'Stefan Seifert <nine@detonation.org>',
         'brian m. carlson <sandals@crustytoothpaste.net>',
         'gregor herrmann <gregoa@debian.org>',
