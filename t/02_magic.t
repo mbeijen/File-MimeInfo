@@ -1,22 +1,27 @@
-require Test::More;
+use strict;
+use warnings;
 
-no warnings;
-@File::MimeInfo::DIRS = ('./t/mime'); # forceing non default value
-#$File::MimeInfo::DEBUG = 1;
+use Test::More;
+
+
+{
+    no warnings 'once';
+    @File::MimeInfo::DIRS = ('./t/mime'); # forceing non default value
+}
 
 opendir MAGIC, 't/magic/';
 my @files = grep {$_ !~ /^\./} readdir MAGIC;
 closedir MAGIC;
 
-Test::More->import( tests => (2 * scalar(@files) + 1) );
-
 use_ok('File::MimeInfo::Magic', qw/mimetype magic/);
 
 for (@files) {
-    $type = $_;
+    my $type = $_;
     $type =~ tr#_#/#;
     $type =~ s#\.\w+$##;
-    ok( mimetype("t/magic/$_") eq $type, "complete (magic) typing of $_");
+    is( mimetype("t/magic/$_"), $type, "complete (magic) typing of $_");
     undef $type if $type eq "text/plain" || $type eq "application/octet-stream";
-    ok( magic("t/magic/$_") eq $type, "magic typing of $_" );
+    is( magic("t/magic/$_"), $type, "magic typing of $_" );
 }
+
+done_testing;
