@@ -103,6 +103,7 @@ sub _default {
     $Carp::CarpLevel++;
     my @paths = grep defined, ($mimetype, $user, $system, $deprecated, $distro, $legacy);
     my @list = _read_list(@paths);
+    return undef if @list == 0;
     my $desktop_file = _find_file(reverse @list);
     $Carp::CarpLevel--;
 
